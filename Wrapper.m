@@ -6,7 +6,8 @@ clc
 clear all
 close all
 
-%% Add ToolBox to Path eg. ToolboxPath = 'gtsam_toolbox';
+%% Add ToolBox to Path
+ToolboxPath = 'gtsam_toolbox';
 addpath(ToolboxPath);
 
 %% Load Data
