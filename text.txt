@@ -1,0 +1,37 @@
+main
+trying lambda = 1
+linear delta norm = 3036.02
+newlinearizedError = 3.21171e+012  linearizedCostChange = 1.51348e+013
+calculating error:
+old error (1.83465e+013) new (tentative) error (1.06475e+014)
+modelFidelity: -5.82293
+increasing lambda
+trying lambda = 10
+linear delta norm = 3030.22
+newlinearizedError = 3.21171e+012  linearizedCostChange = 1.51348e+013
+calculating error:
+old error (1.83465e+013) new (tentative) error (1.08162e+014)
+modelFidelity: -5.93438
+increasing lambda
+trying lambda = 100
+linear delta norm = 2975.17
+newlinearizedError = 3.21172e+012  linearizedCostChange = 1.51348e+013
+calculating error:
+old error (1.83465e+013) new (tentative) error (3.38531e+016)
+modelFidelity: -2235.56
+increasing lambda
+trying lambda = 1000
+linear delta norm = 2609.25
+newlinearizedError = 3.21222e+012  linearizedCostChange = 1.51343e+013
+calculating error:
+old error (1.83465e+013) new (tentative) error (7.54699e+016)
+modelFidelity: -4985.47
+increasing lambda
+trying lambda = 10000
+linear delta norm = 1789.51
+newlinearizedError = 3.21905e+012  linearizedCostChange = 1.51275e+013
+calculating error:
+old error (1.83465e+013) new (tentative) error (1.62671e+016)
+modelFidelity: -1074.12
+increasing lambda
+diary off

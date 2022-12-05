@@ -8,17 +8,14 @@
 %active(Values c) : returns bool
 %clone() : returns gtsam::NonlinearFactor
 %dim() : returns size_t
-%equals(NoiseModelFactor other, double tol) : returns bool
+%equals(NonlinearFactor other, double tol) : returns void
 %error(Values c) : returns double
 %keys() : returns gtsam::KeyVector
 %linearize(Values c) : returns gtsam::GaussianFactor
 %measured() : returns gtsam::Point2
-%noiseModel() : returns gtsam::noiseModel::Base
 %print(string s) : returns void
 %printKeys(string s) : returns void
 %size() : returns size_t
-%unwhitenedError(Values x) : returns Vector
-%whitenedError(Values x) : returns Vector
 %
 %-------Serialization Interface-------
 %string_serialize() : returns string
@@ -34,11 +31,11 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(2085, varargin{2});
+          my_ptr = gtsam_wrapper(1691, varargin{2});
         end
-        base_ptr = gtsam_wrapper(2084, my_ptr);
+        base_ptr = gtsam_wrapper(1690, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'gtsam.Point2') && isa(varargin{4},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(2086, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(1692, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.BetweenFactorPoint2 constructor');
       end
@@ -47,7 +44,7 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(2087, obj.ptr_gtsamBetweenFactorPoint2);
+      gtsam_wrapper(1693, obj.ptr_gtsamBetweenFactorPoint2);
     end
 
     function display(obj), obj.print(''); end
@@ -58,7 +55,7 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
       % ACTIVE usage: active(Values c) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2088, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1694, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.active');
       end
@@ -67,20 +64,20 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::NonlinearFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2089, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1695, this, varargin{:});
     end
 
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2090, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1696, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
-      % EQUALS usage: equals(NoiseModelFactor other, double tol) : returns bool
+      % EQUALS usage: equals(NonlinearFactor other, double tol) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'gtsam.NoiseModelFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(2091, this, varargin{:});
+      if length(varargin) == 2 && isa(varargin{1},'gtsam.NonlinearFactor') && isa(varargin{2},'double')
+        gtsam_wrapper(1697, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.equals');
       end
@@ -90,7 +87,7 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
       % ERROR usage: error(Values c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2092, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1698, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.error');
       end
@@ -99,14 +96,14 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
     function varargout = keys(this, varargin)
       % KEYS usage: keys() : returns gtsam::KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2093, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1699, this, varargin{:});
     end
 
     function varargout = linearize(this, varargin)
       % LINEARIZE usage: linearize(Values c) : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2094, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1700, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.linearize');
       end
@@ -115,20 +112,14 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
     function varargout = measured(this, varargin)
       % MEASURED usage: measured() : returns gtsam::Point2
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2095, this, varargin{:});
-    end
-
-    function varargout = noiseModel(this, varargin)
-      % NOISEMODEL usage: noiseModel() : returns gtsam::noiseModel::Base
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2096, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1701, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(2097, this, varargin{:});
+        gtsam_wrapper(1702, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.print');
       end
@@ -138,7 +129,7 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
       % PRINTKEYS usage: printKeys(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(2098, this, varargin{:});
+        gtsam_wrapper(1703, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.printKeys');
       end
@@ -147,34 +138,14 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2099, this, varargin{:});
-    end
-
-    function varargout = unwhitenedError(this, varargin)
-      % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2100, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.unwhitenedError');
-      end
-    end
-
-    function varargout = whitenedError(this, varargin)
-      % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2101, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.whitenedError');
-      end
+      varargout{1} = gtsam_wrapper(1704, this, varargin{:});
     end
 
     function varargout = string_serialize(this, varargin)
       % STRING_SERIALIZE usage: string_serialize() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(2102, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1705, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.string_serialize');
       end
@@ -191,7 +162,7 @@ classdef BetweenFactorPoint2 < gtsam.NoiseModelFactor
       % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.BetweenFactorPoint2
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(2103, varargin{:});
+        varargout{1} = gtsam_wrapper(1706, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.BetweenFactorPoint2.string_deserialize');
       end

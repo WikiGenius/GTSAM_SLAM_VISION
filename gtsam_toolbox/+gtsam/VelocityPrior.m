@@ -14,11 +14,11 @@ classdef VelocityPrior < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(237, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(257, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(236, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(256, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(238, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(258, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.VelocityPrior constructor');
       end
@@ -27,7 +27,7 @@ classdef VelocityPrior < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(239, obj.ptr_gtsamVelocityPrior);
+      gtsam_unstable_wrapper(259, obj.ptr_gtsamVelocityPrior);
     end
 
     function display(obj), obj.print(''); end

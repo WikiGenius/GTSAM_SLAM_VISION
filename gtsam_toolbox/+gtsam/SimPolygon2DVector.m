@@ -23,7 +23,7 @@ classdef SimPolygon2DVector < handle
     function obj = SimPolygon2DVector(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_unstable_wrapper(139, my_ptr);
+        gtsam_unstable_wrapper(158, my_ptr);
       else
         error('Arguments do not match any overload of gtsam.SimPolygon2DVector constructor');
       end
@@ -31,7 +31,7 @@ classdef SimPolygon2DVector < handle
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(140, obj.ptr_gtsamSimPolygon2DVector);
+      gtsam_unstable_wrapper(159, obj.ptr_gtsamSimPolygon2DVector);
     end
 
     function display(obj), obj.print(''); end
@@ -42,7 +42,7 @@ classdef SimPolygon2DVector < handle
       % ASSIGN usage: assign(size_t n, SimPolygon2D u) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.SimPolygon2D')
-        gtsam_unstable_wrapper(141, this, varargin{:});
+        gtsam_unstable_wrapper(160, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.SimPolygon2DVector.assign');
       end
@@ -51,50 +51,50 @@ classdef SimPolygon2DVector < handle
     function varargout = at(this, varargin)
       % AT usage: at(size_t n) : returns gtsam::SimPolygon2D
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(142, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(161, this, varargin{:});
     end
 
     function varargout = back(this, varargin)
       % BACK usage: back() : returns gtsam::SimPolygon2D
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(143, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(162, this, varargin{:});
     end
 
     function varargout = capacity(this, varargin)
       % CAPACITY usage: capacity() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(144, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(163, this, varargin{:});
     end
 
     function varargout = empty(this, varargin)
       % EMPTY usage: empty() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(145, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(164, this, varargin{:});
     end
 
     function varargout = front(this, varargin)
       % FRONT usage: front() : returns gtsam::SimPolygon2D
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(146, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(165, this, varargin{:});
     end
 
     function varargout = max_size(this, varargin)
       % MAX_SIZE usage: max_size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(147, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(166, this, varargin{:});
     end
 
     function varargout = pop_back(this, varargin)
       % POP_BACK usage: pop_back() : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_unstable_wrapper(148, this, varargin{:});
+      gtsam_unstable_wrapper(167, this, varargin{:});
     end
 
     function varargout = push_back(this, varargin)
       % PUSH_BACK usage: push_back(SimPolygon2D x) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.SimPolygon2D')
-        gtsam_unstable_wrapper(149, this, varargin{:});
+        gtsam_unstable_wrapper(168, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.SimPolygon2DVector.push_back');
       end
@@ -103,19 +103,19 @@ classdef SimPolygon2DVector < handle
     function varargout = reserve(this, varargin)
       % RESERVE usage: reserve(size_t n) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_unstable_wrapper(150, this, varargin{:});
+      gtsam_unstable_wrapper(169, this, varargin{:});
     end
 
     function varargout = resize(this, varargin)
       % RESIZE usage: resize(size_t sz) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_unstable_wrapper(151, this, varargin{:});
+      gtsam_unstable_wrapper(170, this, varargin{:});
     end
 
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_unstable_wrapper(152, this, varargin{:});
+      varargout{1} = gtsam_unstable_wrapper(171, this, varargin{:});
     end
 
   end

@@ -8,17 +8,14 @@
 %active(Values c) : returns bool
 %clone() : returns gtsam::NonlinearFactor
 %dim() : returns size_t
-%equals(NoiseModelFactor other, double tol) : returns bool
+%equals(NonlinearFactor other, double tol) : returns void
 %error(Values c) : returns double
 %keys() : returns gtsam::KeyVector
 %linearize(Values c) : returns gtsam::GaussianFactor
 %measured() : returns gtsam::Point2
-%noiseModel() : returns gtsam::noiseModel::Base
 %print(string s) : returns void
 %printKeys(string s) : returns void
 %size() : returns size_t
-%unwhitenedError(Values x) : returns Vector
-%whitenedError(Values x) : returns Vector
 %
 classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
   properties
@@ -30,11 +27,11 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(3378, varargin{2});
+          my_ptr = gtsam_wrapper(2335, varargin{2});
         end
-        base_ptr = gtsam_wrapper(3377, my_ptr);
+        base_ptr = gtsam_wrapper(2334, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'gtsam.Point2') && isa(varargin{2},'gtsam.noiseModel.Base') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3379, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2336, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.GeneralSFMFactorCal3_S2 constructor');
       end
@@ -43,7 +40,7 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(3380, obj.ptr_gtsamGeneralSFMFactorCal3_S2);
+      gtsam_wrapper(2337, obj.ptr_gtsamGeneralSFMFactorCal3_S2);
     end
 
     function display(obj), obj.print(''); end
@@ -54,7 +51,7 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
       % ACTIVE usage: active(Values c) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3381, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2338, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.active');
       end
@@ -63,20 +60,20 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::NonlinearFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3382, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2339, this, varargin{:});
     end
 
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3383, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2340, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
-      % EQUALS usage: equals(NoiseModelFactor other, double tol) : returns bool
+      % EQUALS usage: equals(NonlinearFactor other, double tol) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'gtsam.NoiseModelFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(3384, this, varargin{:});
+      if length(varargin) == 2 && isa(varargin{1},'gtsam.NonlinearFactor') && isa(varargin{2},'double')
+        gtsam_wrapper(2341, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.equals');
       end
@@ -86,7 +83,7 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
       % ERROR usage: error(Values c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3385, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2342, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.error');
       end
@@ -95,14 +92,14 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
     function varargout = keys(this, varargin)
       % KEYS usage: keys() : returns gtsam::KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3386, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2343, this, varargin{:});
     end
 
     function varargout = linearize(this, varargin)
       % LINEARIZE usage: linearize(Values c) : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3387, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2344, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.linearize');
       end
@@ -111,20 +108,14 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
     function varargout = measured(this, varargin)
       % MEASURED usage: measured() : returns gtsam::Point2
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3388, this, varargin{:});
-    end
-
-    function varargout = noiseModel(this, varargin)
-      % NOISEMODEL usage: noiseModel() : returns gtsam::noiseModel::Base
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3389, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2345, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3390, this, varargin{:});
+        gtsam_wrapper(2346, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.print');
       end
@@ -134,7 +125,7 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
       % PRINTKEYS usage: printKeys(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3391, this, varargin{:});
+        gtsam_wrapper(2347, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.printKeys');
       end
@@ -143,27 +134,7 @@ classdef GeneralSFMFactorCal3_S2 < gtsam.NoiseModelFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3392, this, varargin{:});
-    end
-
-    function varargout = unwhitenedError(this, varargin)
-      % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3393, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.unwhitenedError');
-      end
-    end
-
-    function varargout = whitenedError(this, varargin)
-      % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3394, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GeneralSFMFactorCal3_S2.whitenedError');
-      end
+      varargout{1} = gtsam_wrapper(2348, this, varargin{:});
     end
 
   end

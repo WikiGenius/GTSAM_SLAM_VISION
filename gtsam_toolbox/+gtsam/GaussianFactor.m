@@ -10,7 +10,6 @@
 %error(VectorValues c) : returns double
 %information() : returns Matrix
 %jacobian() : returns pair< Matrix, Vector >
-%keys() : returns gtsam::KeyVector
 %negate() : returns gtsam::GaussianFactor
 %print(string s) : returns void
 %size() : returns size_t
@@ -25,9 +24,9 @@ classdef GaussianFactor < handle
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1010, varargin{2});
+          my_ptr = gtsam_wrapper(674, varargin{2});
         end
-        gtsam_wrapper(1009, my_ptr);
+        gtsam_wrapper(673, my_ptr);
       else
         error('Arguments do not match any overload of gtsam.GaussianFactor constructor');
       end
@@ -35,7 +34,7 @@ classdef GaussianFactor < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1011, obj.ptr_gtsamGaussianFactor);
+      gtsam_wrapper(675, obj.ptr_gtsamGaussianFactor);
     end
 
     function display(obj), obj.print(''); end
@@ -45,32 +44,32 @@ classdef GaussianFactor < handle
     function varargout = augmentedInformation(this, varargin)
       % AUGMENTEDINFORMATION usage: augmentedInformation() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1012, this, varargin{:});
+      varargout{1} = gtsam_wrapper(676, this, varargin{:});
     end
 
     function varargout = augmentedJacobian(this, varargin)
       % AUGMENTEDJACOBIAN usage: augmentedJacobian() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1013, this, varargin{:});
+      varargout{1} = gtsam_wrapper(677, this, varargin{:});
     end
 
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1014, this, varargin{:});
+      varargout{1} = gtsam_wrapper(678, this, varargin{:});
     end
 
     function varargout = empty(this, varargin)
       % EMPTY usage: empty() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1015, this, varargin{:});
+      varargout{1} = gtsam_wrapper(679, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
       % EQUALS usage: equals(GaussianFactor lf, double tol) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.GaussianFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(1016, this, varargin{:});
+        varargout{1} = gtsam_wrapper(680, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianFactor.equals');
       end
@@ -80,7 +79,7 @@ classdef GaussianFactor < handle
       % ERROR usage: error(VectorValues c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1017, this, varargin{:});
+        varargout{1} = gtsam_wrapper(681, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianFactor.error');
       end
@@ -89,32 +88,26 @@ classdef GaussianFactor < handle
     function varargout = information(this, varargin)
       % INFORMATION usage: information() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1018, this, varargin{:});
+      varargout{1} = gtsam_wrapper(682, this, varargin{:});
     end
 
     function varargout = jacobian(this, varargin)
       % JACOBIAN usage: jacobian() : returns pair< Matrix, Vector >
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      [ varargout{1} varargout{2} ] = gtsam_wrapper(1019, this, varargin{:});
-    end
-
-    function varargout = keys(this, varargin)
-      % KEYS usage: keys() : returns gtsam::KeyVector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1020, this, varargin{:});
+      [ varargout{1} varargout{2} ] = gtsam_wrapper(683, this, varargin{:});
     end
 
     function varargout = negate(this, varargin)
       % NEGATE usage: negate() : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1021, this, varargin{:});
+      varargout{1} = gtsam_wrapper(684, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1022, this, varargin{:});
+        gtsam_wrapper(685, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianFactor.print');
       end
@@ -123,7 +116,7 @@ classdef GaussianFactor < handle
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1023, this, varargin{:});
+      varargout{1} = gtsam_wrapper(686, this, varargin{:});
     end
 
   end

@@ -33,7 +33,7 @@ GPSskip = 10; % Skip this many GPS measurements each time
 
 %% Get initial conditions for the estimated trajectory
 currentPoseGlobal = Pose3(Rot3, GPS_data(firstGPSPose).Position); % initial pose is the reference frame (navigation frame)
-currentVelocityGlobal = [0;0;0]; % the vehicle is stationary at the beginning
+currentVelocityGlobal = LieVector([0;0;0]); % the vehicle is stationary at the beginning
 currentBias = imuBias.ConstantBias(zeros(3,1), zeros(3,1));
 sigma_init_x = noiseModel.Isotropic.Precisions([ 0.0; 0.0; 0.0; 1; 1; 1 ]);
 sigma_init_v = noiseModel.Isotropic.Sigma(3, 1000.0);
@@ -41,13 +41,6 @@ sigma_init_b = noiseModel.Isotropic.Sigmas([ 0.100; 0.100; 0.100; 5.00e-05; 5.00
 sigma_between_b = [ IMU_metadata.AccelerometerBiasSigma * ones(3,1); IMU_metadata.GyroscopeBiasSigma * ones(3,1) ];
 g = [0;0;-9.8];
 w_coriolis = [0;0;0];
-
-IMU_params = PreintegrationParams(g);
-
-IMU_params.setAccelerometerCovariance(IMU_metadata.AccelerometerSigma.^2 * eye(3));
-IMU_params.setGyroscopeCovariance(IMU_metadata.GyroscopeSigma.^2 * eye(3));
-IMU_params.setIntegrationCovariance(IMU_metadata.IntegrationSigma.^2 * eye(3));
-IMU_params.setOmegaCoriolis(w_coriolis);
 
 %% Solver object
 isamParams = ISAM2Params;
@@ -72,21 +65,23 @@ for measurementIndex = firstGPSPose:length(GPS_data)
   currentVelKey =  symbol('v',measurementIndex);
   currentBiasKey = symbol('b',measurementIndex);
   t = GPS_data(measurementIndex, 1).Time;
-     
+  
   if measurementIndex == firstGPSPose
     %% Create initial estimate and prior on initial pose, velocity, and biases
     newValues.insert(currentPoseKey, currentPoseGlobal);
     newValues.insert(currentVelKey, currentVelocityGlobal);
     newValues.insert(currentBiasKey, currentBias);
     newFactors.add(PriorFactorPose3(currentPoseKey, currentPoseGlobal, sigma_init_x));
-    newFactors.add(PriorFactorVector(currentVelKey, currentVelocityGlobal, sigma_init_v));
+    newFactors.add(PriorFactorLieVector(currentVelKey, currentVelocityGlobal, sigma_init_v));
     newFactors.add(PriorFactorConstantBias(currentBiasKey, currentBias, sigma_init_b));
   else
     t_previous = GPS_data(measurementIndex-1, 1).Time;
     %% Summarize IMU data between the previous GPS measurement and now
     IMUindices = find(IMUtimes >= t_previous & IMUtimes <= t);
-        
-    currentSummarizedMeasurement = PreintegratedImuMeasurements(IMU_params,currentBias);
+    
+    currentSummarizedMeasurement = gtsam.ImuFactorPreintegratedMeasurements( ...
+      currentBias, IMU_metadata.AccelerometerSigma.^2 * eye(3), ...
+      IMU_metadata.GyroscopeSigma.^2 * eye(3), IMU_metadata.IntegrationSigma.^2 * eye(3));
     
     for imuIndex = IMUindices
       accMeas = [ IMU_data(imuIndex).accelX; IMU_data(imuIndex).accelY; IMU_data(imuIndex).accelZ ];
@@ -99,8 +94,8 @@ for measurementIndex = firstGPSPose:length(GPS_data)
     newFactors.add(ImuFactor( ...
       currentPoseKey-1, currentVelKey-1, ...
       currentPoseKey, currentVelKey, ...
-      currentBiasKey, currentSummarizedMeasurement));
-
+      currentBiasKey, currentSummarizedMeasurement, g, w_coriolis));
+    
     % Bias evolution as given in the IMU metadata
     newFactors.add(BetweenFactorConstantBias(currentBiasKey-1, currentBiasKey, imuBias.ConstantBias(zeros(3,1), zeros(3,1)), ...
       noiseModel.Diagonal.Sigmas(sqrt(numel(IMUindices)) * sigma_between_b)));
@@ -124,13 +119,10 @@ for measurementIndex = firstGPSPose:length(GPS_data)
       isam.update(newFactors, newValues);
       newFactors = NonlinearFactorGraph;
       newValues = Values;
-
-      result = isam.calculateEstimate();
       
       if rem(measurementIndex,10)==0 % plot every 10 time steps
         cla;
-        
-        plot3DTrajectory(result, 'g-');
+        plot3DTrajectory(isam.calculateEstimate, 'g-');
         title('Estimated trajectory using ISAM2 (IMU+GPS)')
         xlabel('[m]')
         ylabel('[m]')
@@ -139,13 +131,12 @@ for measurementIndex = firstGPSPose:length(GPS_data)
         drawnow;
       end
       % =======================================================================
-
-      currentPoseGlobal = result.atPose3(currentPoseKey);
-      currentVelocityGlobal = result.atVector(currentVelKey);
-      currentBias = result.atConstantBias(currentBiasKey);
+      currentPoseGlobal = isam.calculateEstimate(currentPoseKey);
+      currentVelocityGlobal = isam.calculateEstimate(currentVelKey);
+      currentBias = isam.calculateEstimate(currentBiasKey);
     end
   end
-     
+   
 end % end main loop
 
 disp('-- Reached end of sensor data')

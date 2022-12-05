@@ -17,11 +17,11 @@ classdef PendulumFactor1 < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(251, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(271, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(250, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(270, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'numeric') && isa(varargin{4},'double')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(252, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(272, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.PendulumFactor1 constructor');
       end
@@ -30,7 +30,7 @@ classdef PendulumFactor1 < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(253, obj.ptr_gtsamPendulumFactor1);
+      gtsam_unstable_wrapper(273, obj.ptr_gtsamPendulumFactor1);
     end
 
     function display(obj), obj.print(''); end
@@ -41,7 +41,7 @@ classdef PendulumFactor1 < gtsam.NonlinearFactor
       % EVALUATEERROR usage: evaluateError(LieScalar qk1, LieScalar qk, LieScalar v) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 3 && isa(varargin{1},'gtsam.LieScalar') && isa(varargin{2},'gtsam.LieScalar') && isa(varargin{3},'gtsam.LieScalar')
-        varargout{1} = gtsam_unstable_wrapper(254, this, varargin{:});
+        varargout{1} = gtsam_unstable_wrapper(274, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PendulumFactor1.evaluateError');
       end

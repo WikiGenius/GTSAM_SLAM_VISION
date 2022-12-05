@@ -16,9 +16,9 @@ classdef IterativeOptimizationParameters < handle
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1255, varargin{2});
+          my_ptr = gtsam_wrapper(911, varargin{2});
         end
-        gtsam_wrapper(1254, my_ptr);
+        gtsam_wrapper(910, my_ptr);
       else
         error('Arguments do not match any overload of gtsam.IterativeOptimizationParameters constructor');
       end
@@ -26,7 +26,7 @@ classdef IterativeOptimizationParameters < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1256, obj.ptr_gtsamIterativeOptimizationParameters);
+      gtsam_wrapper(912, obj.ptr_gtsamIterativeOptimizationParameters);
     end
 
     function display(obj), obj.print(''); end
@@ -36,20 +36,20 @@ classdef IterativeOptimizationParameters < handle
     function varargout = getVerbosity(this, varargin)
       % GETVERBOSITY usage: getVerbosity() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1257, this, varargin{:});
+      varargout{1} = gtsam_wrapper(913, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print() : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_wrapper(1258, this, varargin{:});
+      gtsam_wrapper(914, this, varargin{:});
     end
 
     function varargout = setVerbosity(this, varargin)
       % SETVERBOSITY usage: setVerbosity(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1259, this, varargin{:});
+        gtsam_wrapper(915, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.IterativeOptimizationParameters.setVerbosity');
       end

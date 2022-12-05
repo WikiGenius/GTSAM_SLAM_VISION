@@ -76,7 +76,7 @@ for i=1:M
   while k<=K && t>=TD(k,1)
     j = TD(k,3);
     range = TD(k,4);
-    factor = RangeFactor2D(i, symbol('L',j), range, noiseModels.range);
+    factor = RangeFactorPosePoint2(i, symbol('L',j), range, noiseModels.range);
     graph.add(factor);
     k=k+1;
   end

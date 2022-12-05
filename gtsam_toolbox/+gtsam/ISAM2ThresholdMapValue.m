@@ -13,11 +13,11 @@ classdef ISAM2ThresholdMapValue < handle
     function obj = ISAM2ThresholdMapValue(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_wrapper(1688, my_ptr);
+        gtsam_wrapper(1317, my_ptr);
       elseif nargin == 2 && isa(varargin{1},'char') && isa(varargin{2},'double')
-        my_ptr = gtsam_wrapper(1689, varargin{1}, varargin{2});
+        my_ptr = gtsam_wrapper(1318, varargin{1}, varargin{2});
       elseif nargin == 1 && isa(varargin{1},'gtsam.ISAM2ThresholdMapValue')
-        my_ptr = gtsam_wrapper(1690, varargin{1});
+        my_ptr = gtsam_wrapper(1319, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.ISAM2ThresholdMapValue constructor');
       end
@@ -25,7 +25,7 @@ classdef ISAM2ThresholdMapValue < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1691, obj.ptr_gtsamISAM2ThresholdMapValue);
+      gtsam_wrapper(1320, obj.ptr_gtsamISAM2ThresholdMapValue);
     end
 
     function display(obj), obj.print(''); end

@@ -3,42 +3,39 @@
 %
 %-------Constructors-------
 %Pose3()
-%Pose3(Pose3 other)
+%Pose3(Pose3 pose)
 %Pose3(Rot3 r, Point3 t)
 %Pose3(Pose2 pose2)
-%Pose3(Matrix mat)
+%Pose3(Matrix t)
 %
 %-------Methods-------
 %Adjoint(Vector xi) : returns Vector
 %AdjointMap() : returns Matrix
-%between(Pose3 pose) : returns gtsam::Pose3
-%compose(Pose3 pose) : returns gtsam::Pose3
+%between(Pose3 p2) : returns gtsam::Pose3
+%compose(Pose3 p2) : returns gtsam::Pose3
+%dim() : returns size_t
 %equals(Pose3 pose, double tol) : returns bool
 %inverse() : returns gtsam::Pose3
-%localCoordinates(Pose3 pose) : returns Vector
+%localCoordinates(Pose3 T2) : returns Vector
 %matrix() : returns Matrix
 %print(string s) : returns void
 %range(Point3 point) : returns double
 %range(Pose3 pose) : returns double
 %retract(Vector v) : returns gtsam::Pose3
+%retractFirstOrder(Vector v) : returns gtsam::Pose3
 %rotation() : returns gtsam::Rot3
-%transformFrom(Point3 point) : returns gtsam::Point3
-%transformPoseFrom(Pose3 pose) : returns gtsam::Pose3
-%transformPoseTo(Pose3 pose) : returns gtsam::Pose3
-%transformTo(Point3 point) : returns gtsam::Point3
+%transform_from(Point3 p) : returns gtsam::Point3
+%transform_to(Point3 p) : returns gtsam::Point3
+%transform_to(Pose3 pose) : returns gtsam::Point3
 %translation() : returns gtsam::Point3
 %x() : returns double
 %y() : returns double
 %z() : returns double
 %
 %-------Static Methods-------
+%Dim() : returns size_t
 %Expmap(Vector v) : returns gtsam::Pose3
-%ExpmapDerivative(Vector xi) : returns Matrix
-%Logmap(Pose3 pose) : returns Vector
-%LogmapDerivative(Pose3 xi) : returns Matrix
-%adjointMap_(Vector xi) : returns Matrix
-%adjointTranspose(Vector xi, Vector y) : returns Vector
-%adjoint_(Vector xi, Vector y) : returns Vector
+%Logmap(Pose3 p) : returns Vector
 %identity() : returns gtsam::Pose3
 %wedge(double wx, double wy, double wz, double vx, double vy, double vz) : returns Matrix
 %
@@ -46,33 +43,38 @@
 %string_serialize() : returns string
 %string_deserialize(string serialized) : returns Pose3
 %
-classdef Pose3 < handle
+classdef Pose3 < gtsam.Value
   properties
     ptr_gtsamPose3 = 0
   end
   methods
     function obj = Pose3(varargin)
-      if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
-        my_ptr = varargin{2};
-        gtsam_wrapper(428, my_ptr);
+      if (nargin == 2 || (nargin == 3 && strcmp(varargin{3}, 'void'))) && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
+        if nargin == 2
+          my_ptr = varargin{2};
+        else
+          my_ptr = gtsam_wrapper(242, varargin{2});
+        end
+        base_ptr = gtsam_wrapper(241, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(429);
+        [ my_ptr, base_ptr ] = gtsam_wrapper(243);
       elseif nargin == 1 && isa(varargin{1},'gtsam.Pose3')
-        my_ptr = gtsam_wrapper(430, varargin{1});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(244, varargin{1});
       elseif nargin == 2 && isa(varargin{1},'gtsam.Rot3') && isa(varargin{2},'gtsam.Point3')
-        my_ptr = gtsam_wrapper(431, varargin{1}, varargin{2});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(245, varargin{1}, varargin{2});
       elseif nargin == 1 && isa(varargin{1},'gtsam.Pose2')
-        my_ptr = gtsam_wrapper(432, varargin{1});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(246, varargin{1});
       elseif nargin == 1 && isa(varargin{1},'double')
-        my_ptr = gtsam_wrapper(433, varargin{1});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(247, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.Pose3 constructor');
       end
+      obj = obj@gtsam.Value(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamPose3 = my_ptr;
     end
 
     function delete(obj)
-      gtsam_wrapper(434, obj.ptr_gtsamPose3);
+      gtsam_wrapper(248, obj.ptr_gtsamPose3);
     end
 
     function display(obj), obj.print(''); end
@@ -82,8 +84,8 @@ classdef Pose3 < handle
     function varargout = Adjoint(this, varargin)
       % ADJOINT usage: Adjoint(Vector xi) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'double') && size(varargin{1},2)==1
-        varargout{1} = gtsam_wrapper(435, this, varargin{:});
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(249, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.Adjoint');
       end
@@ -92,34 +94,40 @@ classdef Pose3 < handle
     function varargout = AdjointMap(this, varargin)
       % ADJOINTMAP usage: AdjointMap() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(436, this, varargin{:});
+      varargout{1} = gtsam_wrapper(250, this, varargin{:});
     end
 
     function varargout = between(this, varargin)
-      % BETWEEN usage: between(Pose3 pose) : returns gtsam::Pose3
+      % BETWEEN usage: between(Pose3 p2) : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(437, this, varargin{:});
+        varargout{1} = gtsam_wrapper(251, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.between');
       end
     end
 
     function varargout = compose(this, varargin)
-      % COMPOSE usage: compose(Pose3 pose) : returns gtsam::Pose3
+      % COMPOSE usage: compose(Pose3 p2) : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(438, this, varargin{:});
+        varargout{1} = gtsam_wrapper(252, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.compose');
       end
+    end
+
+    function varargout = dim(this, varargin)
+      % DIM usage: dim() : returns size_t
+      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      varargout{1} = gtsam_wrapper(253, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
       % EQUALS usage: equals(Pose3 pose, double tol) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.Pose3') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(439, this, varargin{:});
+        varargout{1} = gtsam_wrapper(254, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.equals');
       end
@@ -128,14 +136,14 @@ classdef Pose3 < handle
     function varargout = inverse(this, varargin)
       % INVERSE usage: inverse() : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(440, this, varargin{:});
+      varargout{1} = gtsam_wrapper(255, this, varargin{:});
     end
 
     function varargout = localCoordinates(this, varargin)
-      % LOCALCOORDINATES usage: localCoordinates(Pose3 pose) : returns Vector
+      % LOCALCOORDINATES usage: localCoordinates(Pose3 T2) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(441, this, varargin{:});
+        varargout{1} = gtsam_wrapper(256, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.localCoordinates');
       end
@@ -144,14 +152,14 @@ classdef Pose3 < handle
     function varargout = matrix(this, varargin)
       % MATRIX usage: matrix() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(442, this, varargin{:});
+      varargout{1} = gtsam_wrapper(257, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(443, this, varargin{:});
+        gtsam_wrapper(258, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.print');
       end
@@ -160,10 +168,14 @@ classdef Pose3 < handle
     function varargout = range(this, varargin)
       % RANGE usage: range(Point3 point), range(Pose3 pose) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      % 
+      % Method Overloads
+      % range(Point3 point)
+      % range(Pose3 pose)
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Point3')
-        varargout{1} = gtsam_wrapper(444, this, varargin{:});
+        varargout{1} = gtsam_wrapper(259, this, varargin{:});
       elseif length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(445, this, varargin{:});
+        varargout{1} = gtsam_wrapper(260, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.range');
       end
@@ -172,88 +184,84 @@ classdef Pose3 < handle
     function varargout = retract(this, varargin)
       % RETRACT usage: retract(Vector v) : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'double') && size(varargin{1},2)==1
-        varargout{1} = gtsam_wrapper(446, this, varargin{:});
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(261, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.retract');
+      end
+    end
+
+    function varargout = retractFirstOrder(this, varargin)
+      % RETRACTFIRSTORDER usage: retractFirstOrder(Vector v) : returns gtsam::Pose3
+      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(262, this, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.Pose3.retractFirstOrder');
       end
     end
 
     function varargout = rotation(this, varargin)
       % ROTATION usage: rotation() : returns gtsam::Rot3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(447, this, varargin{:});
+      varargout{1} = gtsam_wrapper(263, this, varargin{:});
     end
 
-    function varargout = transformFrom(this, varargin)
-      % TRANSFORMFROM usage: transformFrom(Point3 point) : returns gtsam::Point3
+    function varargout = transform_from(this, varargin)
+      % TRANSFORM_FROM usage: transform_from(Point3 p) : returns gtsam::Point3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Point3')
-        varargout{1} = gtsam_wrapper(448, this, varargin{:});
+        varargout{1} = gtsam_wrapper(264, this, varargin{:});
       else
-        error('Arguments do not match any overload of function gtsam.Pose3.transformFrom');
+        error('Arguments do not match any overload of function gtsam.Pose3.transform_from');
       end
     end
 
-    function varargout = transformPoseFrom(this, varargin)
-      % TRANSFORMPOSEFROM usage: transformPoseFrom(Pose3 pose) : returns gtsam::Pose3
+    function varargout = transform_to(this, varargin)
+      % TRANSFORM_TO usage: transform_to(Point3 p), transform_to(Pose3 pose) : returns gtsam::Point3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(449, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.transformPoseFrom');
-      end
-    end
-
-    function varargout = transformPoseTo(this, varargin)
-      % TRANSFORMPOSETO usage: transformPoseTo(Pose3 pose) : returns gtsam::Pose3
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(450, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.transformPoseTo');
-      end
-    end
-
-    function varargout = transformTo(this, varargin)
-      % TRANSFORMTO usage: transformTo(Point3 point) : returns gtsam::Point3
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      % 
+      % Method Overloads
+      % transform_to(Point3 p)
+      % transform_to(Pose3 pose)
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Point3')
-        varargout{1} = gtsam_wrapper(451, this, varargin{:});
+        varargout{1} = gtsam_wrapper(265, this, varargin{:});
+      elseif length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
+        varargout{1} = gtsam_wrapper(266, this, varargin{:});
       else
-        error('Arguments do not match any overload of function gtsam.Pose3.transformTo');
+        error('Arguments do not match any overload of function gtsam.Pose3.transform_to');
       end
     end
 
     function varargout = translation(this, varargin)
       % TRANSLATION usage: translation() : returns gtsam::Point3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(452, this, varargin{:});
+      varargout{1} = gtsam_wrapper(267, this, varargin{:});
     end
 
     function varargout = x(this, varargin)
       % X usage: x() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(453, this, varargin{:});
+      varargout{1} = gtsam_wrapper(268, this, varargin{:});
     end
 
     function varargout = y(this, varargin)
       % Y usage: y() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(454, this, varargin{:});
+      varargout{1} = gtsam_wrapper(269, this, varargin{:});
     end
 
     function varargout = z(this, varargin)
       % Z usage: z() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(455, this, varargin{:});
+      varargout{1} = gtsam_wrapper(270, this, varargin{:});
     end
 
     function varargout = string_serialize(this, varargin)
       % STRING_SERIALIZE usage: string_serialize() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(456, this, varargin{:});
+        varargout{1} = gtsam_wrapper(271, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.string_serialize');
       end
@@ -266,93 +274,76 @@ classdef Pose3 < handle
   end
 
   methods(Static = true)
+    function varargout = Dim(varargin)
+      % DIM usage: Dim() : returns size_t
+      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      % 
+      % Usage
+      % DIM()
+      if length(varargin) == 0
+        varargout{1} = gtsam_wrapper(272, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.Pose3.Dim');
+      end
+    end
+
     function varargout = Expmap(varargin)
       % EXPMAP usage: Expmap(Vector v) : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'double') && size(varargin{1},2)==1
-        varargout{1} = gtsam_wrapper(457, varargin{:});
+      % 
+      % Usage
+      % EXPMAP(Vector v)
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(273, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.Expmap');
       end
     end
 
-    function varargout = ExpmapDerivative(varargin)
-      % EXPMAPDERIVATIVE usage: ExpmapDerivative(Vector xi) : returns Matrix
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'double') && size(varargin{1},2)==1
-        varargout{1} = gtsam_wrapper(458, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.ExpmapDerivative');
-      end
-    end
-
     function varargout = Logmap(varargin)
-      % LOGMAP usage: Logmap(Pose3 pose) : returns Vector
+      % LOGMAP usage: Logmap(Pose3 p) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
+      % 
+      % Usage
+      % LOGMAP(Pose3 p)
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(459, varargin{:});
+        varargout{1} = gtsam_wrapper(274, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.Logmap');
-      end
-    end
-
-    function varargout = LogmapDerivative(varargin)
-      % LOGMAPDERIVATIVE usage: LogmapDerivative(Pose3 xi) : returns Matrix
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Pose3')
-        varargout{1} = gtsam_wrapper(460, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.LogmapDerivative');
-      end
-    end
-
-    function varargout = AdjointMap_(varargin)
-      % ADJOINTMAP_ usage: adjointMap_(Vector xi) : returns Matrix
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'double') && size(varargin{1},2)==1
-        varargout{1} = gtsam_wrapper(461, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.adjointMap_');
-      end
-    end
-
-    function varargout = AdjointTranspose(varargin)
-      % ADJOINTTRANSPOSE usage: adjointTranspose(Vector xi, Vector y) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'double') && size(varargin{1},2)==1 && isa(varargin{2},'double') && size(varargin{2},2)==1
-        varargout{1} = gtsam_wrapper(462, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.adjointTranspose');
-      end
-    end
-
-    function varargout = Adjoint_(varargin)
-      % ADJOINT_ usage: adjoint_(Vector xi, Vector y) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'double') && size(varargin{1},2)==1 && isa(varargin{2},'double') && size(varargin{2},2)==1
-        varargout{1} = gtsam_wrapper(463, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.Pose3.adjoint_');
       end
     end
 
     function varargout = Identity(varargin)
       % IDENTITY usage: identity() : returns gtsam::Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(464, varargin{:});
+      % 
+      % Usage
+      % IDENTITY()
+      if length(varargin) == 0
+        varargout{1} = gtsam_wrapper(275, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.Pose3.Identity');
+      end
     end
 
     function varargout = Wedge(varargin)
       % WEDGE usage: wedge(double wx, double wy, double wz, double vx, double vy, double vz) : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(465, varargin{:});
+      % 
+      % Usage
+      % WEDGE(double wx, double wy, double wz, double vx, double vy, double vz)
+      if length(varargin) == 6 && isa(varargin{1},'double') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'double') && isa(varargin{5},'double') && isa(varargin{6},'double')
+        varargout{1} = gtsam_wrapper(276, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.Pose3.Wedge');
+      end
     end
 
     function varargout = string_deserialize(varargin)
       % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.Pose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(466, varargin{:});
+        varargout{1} = gtsam_wrapper(277, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Pose3.string_deserialize');
       end

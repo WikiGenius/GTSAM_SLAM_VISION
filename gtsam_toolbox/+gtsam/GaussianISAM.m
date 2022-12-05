@@ -17,9 +17,9 @@ classdef GaussianISAM < handle
     function obj = GaussianISAM(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_wrapper(1248, my_ptr);
+        gtsam_wrapper(904, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(1249);
+        my_ptr = gtsam_wrapper(905);
       else
         error('Arguments do not match any overload of gtsam.GaussianISAM constructor');
       end
@@ -27,7 +27,7 @@ classdef GaussianISAM < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1250, obj.ptr_gtsamGaussianISAM);
+      gtsam_wrapper(906, obj.ptr_gtsamGaussianISAM);
     end
 
     function display(obj), obj.print(''); end
@@ -37,14 +37,14 @@ classdef GaussianISAM < handle
     function varargout = clear(this, varargin)
       % CLEAR usage: clear() : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_wrapper(1251, this, varargin{:});
+      gtsam_wrapper(907, this, varargin{:});
     end
 
     function varargout = saveGraph(this, varargin)
       % SAVEGRAPH usage: saveGraph(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1252, this, varargin{:});
+        gtsam_wrapper(908, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianISAM.saveGraph');
       end
@@ -54,7 +54,7 @@ classdef GaussianISAM < handle
       % UPDATE usage: update(GaussianFactorGraph newFactors) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.GaussianFactorGraph')
-        gtsam_wrapper(1253, this, varargin{:});
+        gtsam_wrapper(909, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianISAM.update');
       end

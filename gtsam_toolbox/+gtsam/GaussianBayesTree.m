@@ -34,13 +34,13 @@ classdef GaussianBayesTree < handle
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1221, varargin{2});
+          my_ptr = gtsam_wrapper(877, varargin{2});
         end
-        gtsam_wrapper(1220, my_ptr);
+        gtsam_wrapper(876, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(1222);
+        my_ptr = gtsam_wrapper(878);
       elseif nargin == 1 && isa(varargin{1},'gtsam.GaussianBayesTree')
-        my_ptr = gtsam_wrapper(1223, varargin{1});
+        my_ptr = gtsam_wrapper(879, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.GaussianBayesTree constructor');
       end
@@ -48,7 +48,7 @@ classdef GaussianBayesTree < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1224, obj.ptr_gtsamGaussianBayesTree);
+      gtsam_wrapper(880, obj.ptr_gtsamGaussianBayesTree);
     end
 
     function display(obj), obj.print(''); end
@@ -58,20 +58,20 @@ classdef GaussianBayesTree < handle
     function varargout = determinant(this, varargin)
       % DETERMINANT usage: determinant() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1225, this, varargin{:});
+      varargout{1} = gtsam_wrapper(881, this, varargin{:});
     end
 
     function varargout = empty(this, varargin)
       % EMPTY usage: empty() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1226, this, varargin{:});
+      varargout{1} = gtsam_wrapper(882, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
       % EQUALS usage: equals(GaussianBayesTree other, double tol) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.GaussianBayesTree') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(1227, this, varargin{:});
+        varargout{1} = gtsam_wrapper(883, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianBayesTree.equals');
       end
@@ -81,7 +81,7 @@ classdef GaussianBayesTree < handle
       % ERROR usage: error(VectorValues x) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1228, this, varargin{:});
+        varargout{1} = gtsam_wrapper(884, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianBayesTree.error');
       end
@@ -91,7 +91,7 @@ classdef GaussianBayesTree < handle
       % GRADIENT usage: gradient(VectorValues x0) : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1229, this, varargin{:});
+        varargout{1} = gtsam_wrapper(885, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianBayesTree.gradient');
       end
@@ -100,62 +100,62 @@ classdef GaussianBayesTree < handle
     function varargout = gradientAtZero(this, varargin)
       % GRADIENTATZERO usage: gradientAtZero() : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1230, this, varargin{:});
+      varargout{1} = gtsam_wrapper(886, this, varargin{:});
     end
 
     function varargout = joint(this, varargin)
       % JOINT usage: joint(size_t key1, size_t key2) : returns gtsam::GaussianFactorGraph
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1231, this, varargin{:});
+      varargout{1} = gtsam_wrapper(887, this, varargin{:});
     end
 
     function varargout = jointBayesNet(this, varargin)
       % JOINTBAYESNET usage: jointBayesNet(size_t key1, size_t key2) : returns gtsam::GaussianBayesNet
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1232, this, varargin{:});
+      varargout{1} = gtsam_wrapper(888, this, varargin{:});
     end
 
     function varargout = logDeterminant(this, varargin)
       % LOGDETERMINANT usage: logDeterminant() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1233, this, varargin{:});
+      varargout{1} = gtsam_wrapper(889, this, varargin{:});
     end
 
     function varargout = marginalCovariance(this, varargin)
       % MARGINALCOVARIANCE usage: marginalCovariance(size_t key) : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1234, this, varargin{:});
+      varargout{1} = gtsam_wrapper(890, this, varargin{:});
     end
 
     function varargout = marginalFactor(this, varargin)
       % MARGINALFACTOR usage: marginalFactor(size_t key) : returns gtsam::GaussianConditional
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1235, this, varargin{:});
+      varargout{1} = gtsam_wrapper(891, this, varargin{:});
     end
 
     function varargout = numCachedSeparatorMarginals(this, varargin)
       % NUMCACHEDSEPARATORMARGINALS usage: numCachedSeparatorMarginals() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1236, this, varargin{:});
+      varargout{1} = gtsam_wrapper(892, this, varargin{:});
     end
 
     function varargout = optimize(this, varargin)
       % OPTIMIZE usage: optimize() : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1237, this, varargin{:});
+      varargout{1} = gtsam_wrapper(893, this, varargin{:});
     end
 
     function varargout = optimizeGradientSearch(this, varargin)
       % OPTIMIZEGRADIENTSEARCH usage: optimizeGradientSearch() : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1238, this, varargin{:});
+      varargout{1} = gtsam_wrapper(894, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1239, this, varargin{:});
+        gtsam_wrapper(895, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianBayesTree.print');
       end
@@ -165,7 +165,7 @@ classdef GaussianBayesTree < handle
       % SAVEGRAPH usage: saveGraph(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1240, this, varargin{:});
+        gtsam_wrapper(896, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianBayesTree.saveGraph');
       end
@@ -174,7 +174,7 @@ classdef GaussianBayesTree < handle
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1241, this, varargin{:});
+      varargout{1} = gtsam_wrapper(897, this, varargin{:});
     end
 
   end

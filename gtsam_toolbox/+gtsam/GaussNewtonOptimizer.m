@@ -7,7 +7,7 @@
 %
 %-------Methods-------
 %error() : returns double
-%iterate() : returns gtsam::GaussianFactorGraph
+%iterate() : returns void
 %iterations() : returns int
 %optimize() : returns gtsam::Values
 %optimizeSafely() : returns gtsam::Values
@@ -23,13 +23,13 @@ classdef GaussNewtonOptimizer < gtsam.NonlinearOptimizer
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1635, varargin{2});
+          my_ptr = gtsam_wrapper(1264, varargin{2});
         end
-        base_ptr = gtsam_wrapper(1634, my_ptr);
+        base_ptr = gtsam_wrapper(1263, my_ptr);
       elseif nargin == 2 && isa(varargin{1},'gtsam.NonlinearFactorGraph') && isa(varargin{2},'gtsam.Values')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1636, varargin{1}, varargin{2});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(1265, varargin{1}, varargin{2});
       elseif nargin == 3 && isa(varargin{1},'gtsam.NonlinearFactorGraph') && isa(varargin{2},'gtsam.Values') && isa(varargin{3},'gtsam.GaussNewtonParams')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1637, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(1266, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.GaussNewtonOptimizer constructor');
       end
@@ -38,7 +38,7 @@ classdef GaussNewtonOptimizer < gtsam.NonlinearOptimizer
     end
 
     function delete(obj)
-      gtsam_wrapper(1638, obj.ptr_gtsamGaussNewtonOptimizer);
+      gtsam_wrapper(1267, obj.ptr_gtsamGaussNewtonOptimizer);
     end
 
     function display(obj), obj.print(''); end
@@ -48,37 +48,37 @@ classdef GaussNewtonOptimizer < gtsam.NonlinearOptimizer
     function varargout = error(this, varargin)
       % ERROR usage: error() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1639, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1268, this, varargin{:});
     end
 
     function varargout = iterate(this, varargin)
-      % ITERATE usage: iterate() : returns gtsam::GaussianFactorGraph
+      % ITERATE usage: iterate() : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1640, this, varargin{:});
+      gtsam_wrapper(1269, this, varargin{:});
     end
 
     function varargout = iterations(this, varargin)
       % ITERATIONS usage: iterations() : returns int
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1641, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1270, this, varargin{:});
     end
 
     function varargout = optimize(this, varargin)
       % OPTIMIZE usage: optimize() : returns gtsam::Values
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1642, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1271, this, varargin{:});
     end
 
     function varargout = optimizeSafely(this, varargin)
       % OPTIMIZESAFELY usage: optimizeSafely() : returns gtsam::Values
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1643, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1272, this, varargin{:});
     end
 
     function varargout = values(this, varargin)
       % VALUES usage: values() : returns gtsam::Values
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1644, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1273, this, varargin{:});
     end
 
   end

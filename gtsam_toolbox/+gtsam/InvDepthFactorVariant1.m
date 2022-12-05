@@ -4,7 +4,7 @@
 %-------Constructors-------
 %InvDepthFactorVariant1(size_t poseKey, size_t landmarkKey, Point2 measured, Cal3_S2 K, Base model)
 %
-classdef InvDepthFactorVariant1 < gtsam.NoiseModelFactor
+classdef InvDepthFactorVariant1 < gtsam.NonlinearFactor
   properties
     ptr_gtsamInvDepthFactorVariant1 = 0
   end
@@ -14,20 +14,20 @@ classdef InvDepthFactorVariant1 < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(410, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(312, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(409, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(311, my_ptr);
       elseif nargin == 5 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'gtsam.Point2') && isa(varargin{4},'gtsam.Cal3_S2') && isa(varargin{5},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(411, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(313, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
       else
         error('Arguments do not match any overload of gtsam.InvDepthFactorVariant1 constructor');
       end
-      obj = obj@gtsam.NoiseModelFactor(uint64(5139824614673773682), base_ptr);
+      obj = obj@gtsam.NonlinearFactor(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamInvDepthFactorVariant1 = my_ptr;
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(412, obj.ptr_gtsamInvDepthFactorVariant1);
+      gtsam_unstable_wrapper(314, obj.ptr_gtsamInvDepthFactorVariant1);
     end
 
     function display(obj), obj.print(''); end

@@ -4,7 +4,7 @@
 %-------Constructors-------
 %BetweenFactorPoseRTV(size_t key1, size_t key2, PoseRTV relativePose, Base noiseModel)
 %
-classdef BetweenFactorPoseRTV < gtsam.NoiseModelFactor
+classdef BetweenFactorPoseRTV < gtsam.NonlinearFactor
   properties
     ptr_gtsamBetweenFactorPoseRTV = 0
   end
@@ -14,20 +14,20 @@ classdef BetweenFactorPoseRTV < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(158, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(177, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(157, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(176, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'gtsam.PoseRTV') && isa(varargin{4},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(159, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(178, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.BetweenFactorPoseRTV constructor');
       end
-      obj = obj@gtsam.NoiseModelFactor(uint64(5139824614673773682), base_ptr);
+      obj = obj@gtsam.NonlinearFactor(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamBetweenFactorPoseRTV = my_ptr;
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(160, obj.ptr_gtsamBetweenFactorPoseRTV);
+      gtsam_unstable_wrapper(179, obj.ptr_gtsamBetweenFactorPoseRTV);
     end
 
     function display(obj), obj.print(''); end

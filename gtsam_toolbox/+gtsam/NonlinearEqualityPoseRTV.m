@@ -5,7 +5,7 @@
 %NonlinearEqualityPoseRTV(size_t j, PoseRTV feasible)
 %NonlinearEqualityPoseRTV(size_t j, PoseRTV feasible, double error_gain)
 %
-classdef NonlinearEqualityPoseRTV < gtsam.NoiseModelFactor
+classdef NonlinearEqualityPoseRTV < gtsam.NonlinearFactor
   properties
     ptr_gtsamNonlinearEqualityPoseRTV = 0
   end
@@ -15,22 +15,22 @@ classdef NonlinearEqualityPoseRTV < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(203, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(223, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(202, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(222, my_ptr);
       elseif nargin == 2 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.PoseRTV')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(204, varargin{1}, varargin{2});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(224, varargin{1}, varargin{2});
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.PoseRTV') && isa(varargin{3},'double')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(205, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(225, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.NonlinearEqualityPoseRTV constructor');
       end
-      obj = obj@gtsam.NoiseModelFactor(uint64(5139824614673773682), base_ptr);
+      obj = obj@gtsam.NonlinearFactor(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamNonlinearEqualityPoseRTV = my_ptr;
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(206, obj.ptr_gtsamNonlinearEqualityPoseRTV);
+      gtsam_unstable_wrapper(226, obj.ptr_gtsamNonlinearEqualityPoseRTV);
     end
 
     function display(obj), obj.print(''); end

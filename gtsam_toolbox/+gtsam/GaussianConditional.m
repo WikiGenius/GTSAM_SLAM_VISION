@@ -18,7 +18,6 @@
 %error(VectorValues c) : returns double
 %information() : returns Matrix
 %jacobian() : returns pair< Matrix, Vector >
-%keys() : returns gtsam::KeyVector
 %negate() : returns gtsam::GaussianFactor
 %print(string s) : returns void
 %scaleFrontalsBySigma(VectorValues gy) : returns void
@@ -41,21 +40,21 @@ classdef GaussianConditional < gtsam.GaussianFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1147, varargin{2});
+          my_ptr = gtsam_wrapper(808, varargin{2});
         end
-        base_ptr = gtsam_wrapper(1146, my_ptr);
+        base_ptr = gtsam_wrapper(807, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'gtsam.noiseModel.Diagonal')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1148, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(809, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       elseif nargin == 6 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'numeric') && isa(varargin{5},'double') && isa(varargin{6},'gtsam.noiseModel.Diagonal')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1149, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(810, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6});
       elseif nargin == 8 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'numeric') && isa(varargin{5},'double') && isa(varargin{6},'numeric') && isa(varargin{7},'double') && isa(varargin{8},'gtsam.noiseModel.Diagonal')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1150, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(811, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1151, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(812, varargin{1}, varargin{2}, varargin{3});
       elseif nargin == 5 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'numeric') && isa(varargin{5},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1152, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(813, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
       elseif nargin == 7 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'double') && isa(varargin{4},'numeric') && isa(varargin{5},'double') && isa(varargin{6},'numeric') && isa(varargin{7},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(1153, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(814, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
       else
         error('Arguments do not match any overload of gtsam.GaussianConditional constructor');
       end
@@ -64,7 +63,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(1154, obj.ptr_gtsamGaussianConditional);
+      gtsam_wrapper(815, obj.ptr_gtsamGaussianConditional);
     end
 
     function display(obj), obj.print(''); end
@@ -74,32 +73,32 @@ classdef GaussianConditional < gtsam.GaussianFactor
     function varargout = augmentedInformation(this, varargin)
       % AUGMENTEDINFORMATION usage: augmentedInformation() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1155, this, varargin{:});
+      varargout{1} = gtsam_wrapper(816, this, varargin{:});
     end
 
     function varargout = augmentedJacobian(this, varargin)
       % AUGMENTEDJACOBIAN usage: augmentedJacobian() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1156, this, varargin{:});
+      varargout{1} = gtsam_wrapper(817, this, varargin{:});
     end
 
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1157, this, varargin{:});
+      varargout{1} = gtsam_wrapper(818, this, varargin{:});
     end
 
     function varargout = empty(this, varargin)
       % EMPTY usage: empty() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1158, this, varargin{:});
+      varargout{1} = gtsam_wrapper(819, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
       % EQUALS usage: equals(GaussianConditional cg, double tol) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.GaussianConditional') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(1159, this, varargin{:});
+        varargout{1} = gtsam_wrapper(820, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.equals');
       end
@@ -109,7 +108,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % ERROR usage: error(VectorValues c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1160, this, varargin{:});
+        varargout{1} = gtsam_wrapper(821, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.error');
       end
@@ -118,32 +117,26 @@ classdef GaussianConditional < gtsam.GaussianFactor
     function varargout = information(this, varargin)
       % INFORMATION usage: information() : returns Matrix
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1161, this, varargin{:});
+      varargout{1} = gtsam_wrapper(822, this, varargin{:});
     end
 
     function varargout = jacobian(this, varargin)
       % JACOBIAN usage: jacobian() : returns pair< Matrix, Vector >
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      [ varargout{1} varargout{2} ] = gtsam_wrapper(1162, this, varargin{:});
-    end
-
-    function varargout = keys(this, varargin)
-      % KEYS usage: keys() : returns gtsam::KeyVector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1163, this, varargin{:});
+      [ varargout{1} varargout{2} ] = gtsam_wrapper(823, this, varargin{:});
     end
 
     function varargout = negate(this, varargin)
       % NEGATE usage: negate() : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1164, this, varargin{:});
+      varargout{1} = gtsam_wrapper(824, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1165, this, varargin{:});
+        gtsam_wrapper(825, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.print');
       end
@@ -153,7 +146,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % SCALEFRONTALSBYSIGMA usage: scaleFrontalsBySigma(VectorValues gy) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        gtsam_wrapper(1166, this, varargin{:});
+        gtsam_wrapper(826, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.scaleFrontalsBySigma');
       end
@@ -162,14 +155,14 @@ classdef GaussianConditional < gtsam.GaussianFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1167, this, varargin{:});
+      varargout{1} = gtsam_wrapper(827, this, varargin{:});
     end
 
     function varargout = solve(this, varargin)
       % SOLVE usage: solve(VectorValues parents) : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1168, this, varargin{:});
+        varargout{1} = gtsam_wrapper(828, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.solve');
       end
@@ -179,7 +172,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % SOLVEOTHERRHS usage: solveOtherRHS(VectorValues parents, VectorValues rhs) : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.VectorValues') && isa(varargin{2},'gtsam.VectorValues')
-        varargout{1} = gtsam_wrapper(1169, this, varargin{:});
+        varargout{1} = gtsam_wrapper(829, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.solveOtherRHS');
       end
@@ -189,7 +182,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % SOLVETRANSPOSEINPLACE usage: solveTransposeInPlace(VectorValues gy) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.VectorValues')
-        gtsam_wrapper(1170, this, varargin{:});
+        gtsam_wrapper(830, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.solveTransposeInPlace');
       end
@@ -199,7 +192,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % STRING_SERIALIZE usage: string_serialize() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(1171, this, varargin{:});
+        varargout{1} = gtsam_wrapper(831, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.string_serialize');
       end
@@ -216,7 +209,7 @@ classdef GaussianConditional < gtsam.GaussianFactor
       % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.GaussianConditional
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(1172, varargin{:});
+        varargout{1} = gtsam_wrapper(832, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GaussianConditional.string_deserialize');
       end

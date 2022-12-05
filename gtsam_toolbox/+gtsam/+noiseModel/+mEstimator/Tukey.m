@@ -6,8 +6,6 @@
 %
 %-------Methods-------
 %print(string s) : returns void
-%residual(double error) : returns double
-%weight(double error) : returns double
 %
 %-------Static Methods-------
 %Create(double k) : returns gtsam::noiseModel::mEstimator::Tukey
@@ -22,11 +20,11 @@ classdef Tukey < gtsam.noiseModel.mEstimator.Base
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(928, varargin{2});
+          my_ptr = gtsam_wrapper(626, varargin{2});
         end
-        base_ptr = gtsam_wrapper(927, my_ptr);
+        base_ptr = gtsam_wrapper(625, my_ptr);
       elseif nargin == 1 && isa(varargin{1},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(929, varargin{1});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(627, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.noiseModel.mEstimator.Tukey constructor');
       end
@@ -35,7 +33,7 @@ classdef Tukey < gtsam.noiseModel.mEstimator.Base
     end
 
     function delete(obj)
-      gtsam_wrapper(930, obj.ptr_gtsamnoiseModelmEstimatorTukey);
+      gtsam_wrapper(628, obj.ptr_gtsamnoiseModelmEstimatorTukey);
     end
 
     function display(obj), obj.print(''); end
@@ -46,22 +44,10 @@ classdef Tukey < gtsam.noiseModel.mEstimator.Base
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(931, this, varargin{:});
+        gtsam_wrapper(629, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.noiseModel.mEstimator.Tukey.print');
       end
-    end
-
-    function varargout = residual(this, varargin)
-      % RESIDUAL usage: residual(double error) : returns double
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(932, this, varargin{:});
-    end
-
-    function varargout = weight(this, varargin)
-      % WEIGHT usage: weight(double error) : returns double
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(933, this, varargin{:});
     end
 
   end
@@ -70,7 +56,14 @@ classdef Tukey < gtsam.noiseModel.mEstimator.Base
     function varargout = Create(varargin)
       % CREATE usage: Create(double k) : returns gtsam::noiseModel::mEstimator::Tukey
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(934, varargin{:});
+      % 
+      % Usage
+      % CREATE(double k)
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(630, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.noiseModel.mEstimator.Tukey.Create');
+      end
     end
 
   end

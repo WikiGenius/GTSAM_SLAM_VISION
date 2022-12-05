@@ -17,9 +17,9 @@ classdef ISAM2GaussNewtonParams < handle
     function obj = ISAM2GaussNewtonParams(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_wrapper(1670, my_ptr);
+        gtsam_wrapper(1299, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(1671);
+        my_ptr = gtsam_wrapper(1300);
       else
         error('Arguments do not match any overload of gtsam.ISAM2GaussNewtonParams constructor');
       end
@@ -27,7 +27,7 @@ classdef ISAM2GaussNewtonParams < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1672, obj.ptr_gtsamISAM2GaussNewtonParams);
+      gtsam_wrapper(1301, obj.ptr_gtsamISAM2GaussNewtonParams);
     end
 
     function display(obj), obj.print(''); end
@@ -37,14 +37,14 @@ classdef ISAM2GaussNewtonParams < handle
     function varargout = getWildfireThreshold(this, varargin)
       % GETWILDFIRETHRESHOLD usage: getWildfireThreshold() : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1673, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1302, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string str) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1674, this, varargin{:});
+        gtsam_wrapper(1303, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.ISAM2GaussNewtonParams.print');
       end
@@ -53,7 +53,7 @@ classdef ISAM2GaussNewtonParams < handle
     function varargout = setWildfireThreshold(this, varargin)
       % SETWILDFIRETHRESHOLD usage: setWildfireThreshold(double wildfireThreshold) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_wrapper(1675, this, varargin{:});
+      gtsam_wrapper(1304, this, varargin{:});
     end
 
   end

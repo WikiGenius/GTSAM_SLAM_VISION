@@ -15,13 +15,13 @@ classdef DRollPrior < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(232, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(252, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(231, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(251, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(233, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(253, varargin{1}, varargin{2}, varargin{3});
       elseif nargin == 2 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(234, varargin{1}, varargin{2});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(254, varargin{1}, varargin{2});
       else
         error('Arguments do not match any overload of gtsam.DRollPrior constructor');
       end
@@ -30,7 +30,7 @@ classdef DRollPrior < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(235, obj.ptr_gtsamDRollPrior);
+      gtsam_unstable_wrapper(255, obj.ptr_gtsamDRollPrior);
     end
 
     function display(obj), obj.print(''); end

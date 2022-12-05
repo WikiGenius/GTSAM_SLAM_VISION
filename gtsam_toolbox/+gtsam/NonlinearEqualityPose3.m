@@ -9,16 +9,13 @@
 %active(Values c) : returns bool
 %clone() : returns gtsam::NonlinearFactor
 %dim() : returns size_t
-%equals(NoiseModelFactor other, double tol) : returns bool
+%equals(NonlinearFactor other, double tol) : returns void
 %error(Values c) : returns double
 %keys() : returns gtsam::KeyVector
 %linearize(Values c) : returns gtsam::GaussianFactor
-%noiseModel() : returns gtsam::noiseModel::Base
 %print(string s) : returns void
 %printKeys(string s) : returns void
 %size() : returns size_t
-%unwhitenedError(Values x) : returns Vector
-%whitenedError(Values x) : returns Vector
 %
 %-------Serialization Interface-------
 %string_serialize() : returns string
@@ -34,13 +31,13 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(2425, varargin{2});
+          my_ptr = gtsam_wrapper(1963, varargin{2});
         end
-        base_ptr = gtsam_wrapper(2424, my_ptr);
+        base_ptr = gtsam_wrapper(1962, my_ptr);
       elseif nargin == 2 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.Pose3')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(2426, varargin{1}, varargin{2});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(1964, varargin{1}, varargin{2});
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.Pose3') && isa(varargin{3},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(2427, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(1965, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.NonlinearEqualityPose3 constructor');
       end
@@ -49,7 +46,7 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(2428, obj.ptr_gtsamNonlinearEqualityPose3);
+      gtsam_wrapper(1966, obj.ptr_gtsamNonlinearEqualityPose3);
     end
 
     function display(obj), obj.print(''); end
@@ -60,7 +57,7 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
       % ACTIVE usage: active(Values c) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2429, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1967, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.active');
       end
@@ -69,20 +66,20 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::NonlinearFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2430, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1968, this, varargin{:});
     end
 
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2431, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1969, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
-      % EQUALS usage: equals(NoiseModelFactor other, double tol) : returns bool
+      % EQUALS usage: equals(NonlinearFactor other, double tol) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'gtsam.NoiseModelFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(2432, this, varargin{:});
+      if length(varargin) == 2 && isa(varargin{1},'gtsam.NonlinearFactor') && isa(varargin{2},'double')
+        gtsam_wrapper(1970, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.equals');
       end
@@ -92,7 +89,7 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
       % ERROR usage: error(Values c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2433, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1971, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.error');
       end
@@ -101,30 +98,24 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
     function varargout = keys(this, varargin)
       % KEYS usage: keys() : returns gtsam::KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2434, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1972, this, varargin{:});
     end
 
     function varargout = linearize(this, varargin)
       % LINEARIZE usage: linearize(Values c) : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2435, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1973, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.linearize');
       end
-    end
-
-    function varargout = noiseModel(this, varargin)
-      % NOISEMODEL usage: noiseModel() : returns gtsam::noiseModel::Base
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2436, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(2437, this, varargin{:});
+        gtsam_wrapper(1974, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.print');
       end
@@ -134,7 +125,7 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
       % PRINTKEYS usage: printKeys(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(2438, this, varargin{:});
+        gtsam_wrapper(1975, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.printKeys');
       end
@@ -143,34 +134,14 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(2439, this, varargin{:});
-    end
-
-    function varargout = unwhitenedError(this, varargin)
-      % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2440, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.unwhitenedError');
-      end
-    end
-
-    function varargout = whitenedError(this, varargin)
-      % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(2441, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.whitenedError');
-      end
+      varargout{1} = gtsam_wrapper(1976, this, varargin{:});
     end
 
     function varargout = string_serialize(this, varargin)
       % STRING_SERIALIZE usage: string_serialize() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(2442, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1977, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.string_serialize');
       end
@@ -187,7 +158,7 @@ classdef NonlinearEqualityPose3 < gtsam.NoiseModelFactor
       % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.NonlinearEqualityPose3
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(2443, varargin{:});
+        varargout{1} = gtsam_wrapper(1978, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.NonlinearEqualityPose3.string_deserialize');
       end

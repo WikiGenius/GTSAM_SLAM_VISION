@@ -8,16 +8,13 @@
 %active(Values c) : returns bool
 %clone() : returns gtsam::NonlinearFactor
 %dim() : returns size_t
-%equals(NoiseModelFactor other, double tol) : returns bool
+%equals(NonlinearFactor other, double tol) : returns void
 %error(Values c) : returns double
 %keys() : returns gtsam::KeyVector
 %linearize(Values c) : returns gtsam::GaussianFactor
-%noiseModel() : returns gtsam::noiseModel::Base
 %print(string s) : returns void
 %printKeys(string s) : returns void
 %size() : returns size_t
-%unwhitenedError(Values x) : returns Vector
-%whitenedError(Values x) : returns Vector
 %
 classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
   properties
@@ -29,11 +26,11 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(3435, varargin{2});
+          my_ptr = gtsam_wrapper(2398, varargin{2});
         end
-        base_ptr = gtsam_wrapper(3434, my_ptr);
+        base_ptr = gtsam_wrapper(2397, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.Pose2') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3436, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2399, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.PoseTranslationPrior2D constructor');
       end
@@ -42,7 +39,7 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(3437, obj.ptr_gtsamPoseTranslationPrior2D);
+      gtsam_wrapper(2400, obj.ptr_gtsamPoseTranslationPrior2D);
     end
 
     function display(obj), obj.print(''); end
@@ -53,7 +50,7 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
       % ACTIVE usage: active(Values c) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3438, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2401, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.active');
       end
@@ -62,20 +59,20 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::NonlinearFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3439, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2402, this, varargin{:});
     end
 
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3440, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2403, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
-      % EQUALS usage: equals(NoiseModelFactor other, double tol) : returns bool
+      % EQUALS usage: equals(NonlinearFactor other, double tol) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'gtsam.NoiseModelFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(3441, this, varargin{:});
+      if length(varargin) == 2 && isa(varargin{1},'gtsam.NonlinearFactor') && isa(varargin{2},'double')
+        gtsam_wrapper(2404, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.equals');
       end
@@ -85,7 +82,7 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
       % ERROR usage: error(Values c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3442, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2405, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.error');
       end
@@ -94,30 +91,24 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
     function varargout = keys(this, varargin)
       % KEYS usage: keys() : returns gtsam::KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3443, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2406, this, varargin{:});
     end
 
     function varargout = linearize(this, varargin)
       % LINEARIZE usage: linearize(Values c) : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3444, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2407, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.linearize');
       end
-    end
-
-    function varargout = noiseModel(this, varargin)
-      % NOISEMODEL usage: noiseModel() : returns gtsam::noiseModel::Base
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3445, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3446, this, varargin{:});
+        gtsam_wrapper(2408, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.print');
       end
@@ -127,7 +118,7 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
       % PRINTKEYS usage: printKeys(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3447, this, varargin{:});
+        gtsam_wrapper(2409, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.printKeys');
       end
@@ -136,27 +127,7 @@ classdef PoseTranslationPrior2D < gtsam.NoiseModelFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3448, this, varargin{:});
-    end
-
-    function varargout = unwhitenedError(this, varargin)
-      % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3449, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.unwhitenedError');
-      end
-    end
-
-    function varargout = whitenedError(this, varargin)
-      % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3450, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.PoseTranslationPrior2D.whitenedError');
-      end
+      varargout{1} = gtsam_wrapper(2410, this, varargin{:});
     end
 
   end

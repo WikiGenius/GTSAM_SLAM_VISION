@@ -18,13 +18,13 @@ classdef SubgraphSolver < handle
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(1295, varargin{2});
+          my_ptr = gtsam_wrapper(941, varargin{2});
         end
-        gtsam_wrapper(1294, my_ptr);
+        gtsam_wrapper(940, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'gtsam.GaussianFactorGraph') && isa(varargin{2},'gtsam.SubgraphSolverParameters') && isa(varargin{3},'gtsam.Ordering')
-        my_ptr = gtsam_wrapper(1296, varargin{1}, varargin{2}, varargin{3});
+        my_ptr = gtsam_wrapper(942, varargin{1}, varargin{2}, varargin{3});
       elseif nargin == 4 && isa(varargin{1},'gtsam.GaussianFactorGraph') && isa(varargin{2},'gtsam.GaussianFactorGraph') && isa(varargin{3},'gtsam.SubgraphSolverParameters') && isa(varargin{4},'gtsam.Ordering')
-        my_ptr = gtsam_wrapper(1297, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        my_ptr = gtsam_wrapper(943, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.SubgraphSolver constructor');
       end
@@ -32,7 +32,7 @@ classdef SubgraphSolver < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1298, obj.ptr_gtsamSubgraphSolver);
+      gtsam_wrapper(944, obj.ptr_gtsamSubgraphSolver);
     end
 
     function display(obj), obj.print(''); end
@@ -42,7 +42,7 @@ classdef SubgraphSolver < handle
     function varargout = optimize(this, varargin)
       % OPTIMIZE usage: optimize() : returns gtsam::VectorValues
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(1299, this, varargin{:});
+      varargout{1} = gtsam_wrapper(945, this, varargin{:});
     end
 
   end

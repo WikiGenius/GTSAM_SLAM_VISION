@@ -4,7 +4,7 @@
 %-------Constructors-------
 %PriorFactorPoseRTV(size_t key, PoseRTV prior, Base noiseModel)
 %
-classdef PriorFactorPoseRTV < gtsam.NoiseModelFactor
+classdef PriorFactorPoseRTV < gtsam.NonlinearFactor
   properties
     ptr_gtsamPriorFactorPoseRTV = 0
   end
@@ -14,20 +14,20 @@ classdef PriorFactorPoseRTV < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(154, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(173, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(153, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(172, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.PoseRTV') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(155, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(174, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.PriorFactorPoseRTV constructor');
       end
-      obj = obj@gtsam.NoiseModelFactor(uint64(5139824614673773682), base_ptr);
+      obj = obj@gtsam.NonlinearFactor(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamPriorFactorPoseRTV = my_ptr;
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(156, obj.ptr_gtsamPriorFactorPoseRTV);
+      gtsam_unstable_wrapper(175, obj.ptr_gtsamPriorFactorPoseRTV);
     end
 
     function display(obj), obj.print(''); end

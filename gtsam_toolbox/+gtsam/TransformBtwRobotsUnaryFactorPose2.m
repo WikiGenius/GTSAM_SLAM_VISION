@@ -19,11 +19,11 @@ classdef TransformBtwRobotsUnaryFactorPose2 < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(190, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(209, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(189, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(208, my_ptr);
       elseif nargin == 7 && isa(varargin{1},'numeric') && isa(varargin{2},'gtsam.Pose2') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric') && isa(varargin{5},'gtsam.Values') && isa(varargin{6},'gtsam.Values') && isa(varargin{7},'gtsam.noiseModel.Gaussian')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(191, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(210, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
       else
         error('Arguments do not match any overload of gtsam.TransformBtwRobotsUnaryFactorPose2 constructor');
       end
@@ -32,7 +32,7 @@ classdef TransformBtwRobotsUnaryFactorPose2 < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(192, obj.ptr_gtsamTransformBtwRobotsUnaryFactorPose2);
+      gtsam_unstable_wrapper(211, obj.ptr_gtsamTransformBtwRobotsUnaryFactorPose2);
     end
 
     function display(obj), obj.print(''); end
@@ -43,7 +43,7 @@ classdef TransformBtwRobotsUnaryFactorPose2 < gtsam.NonlinearFactor
       % SETVALAVALB usage: setValAValB(Values valA, Values valB) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.Values') && isa(varargin{2},'gtsam.Values')
-        gtsam_unstable_wrapper(193, this, varargin{:});
+        gtsam_unstable_wrapper(212, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.TransformBtwRobotsUnaryFactorPose2.setValAValB');
       end
@@ -53,7 +53,7 @@ classdef TransformBtwRobotsUnaryFactorPose2 < gtsam.NonlinearFactor
       % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_unstable_wrapper(194, this, varargin{:});
+        varargout{1} = gtsam_unstable_wrapper(213, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.TransformBtwRobotsUnaryFactorPose2.unwhitenedError');
       end
@@ -63,7 +63,7 @@ classdef TransformBtwRobotsUnaryFactorPose2 < gtsam.NonlinearFactor
       % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_unstable_wrapper(195, this, varargin{:});
+        varargout{1} = gtsam_unstable_wrapper(214, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.TransformBtwRobotsUnaryFactorPose2.whitenedError');
       end

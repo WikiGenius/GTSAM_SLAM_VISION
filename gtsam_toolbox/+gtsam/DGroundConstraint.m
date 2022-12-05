@@ -15,13 +15,13 @@ classdef DGroundConstraint < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(241, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(261, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(240, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(260, my_ptr);
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(242, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(262, varargin{1}, varargin{2}, varargin{3});
       elseif nargin == 3 && isa(varargin{1},'numeric') && isa(varargin{2},'double') && isa(varargin{3},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(243, varargin{1}, varargin{2}, varargin{3});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(263, varargin{1}, varargin{2}, varargin{3});
       else
         error('Arguments do not match any overload of gtsam.DGroundConstraint constructor');
       end
@@ -30,7 +30,7 @@ classdef DGroundConstraint < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(244, obj.ptr_gtsamDGroundConstraint);
+      gtsam_unstable_wrapper(264, obj.ptr_gtsamDGroundConstraint);
     end
 
     function display(obj), obj.print(''); end

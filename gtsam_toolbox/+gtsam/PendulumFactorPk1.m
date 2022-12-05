@@ -17,11 +17,11 @@ classdef PendulumFactorPk1 < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(266, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(286, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(265, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(285, my_ptr);
       elseif nargin == 8 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'numeric') && isa(varargin{4},'double') && isa(varargin{5},'double') && isa(varargin{6},'double') && isa(varargin{7},'double') && isa(varargin{8},'double')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(267, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(287, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
       else
         error('Arguments do not match any overload of gtsam.PendulumFactorPk1 constructor');
       end
@@ -30,7 +30,7 @@ classdef PendulumFactorPk1 < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(268, obj.ptr_gtsamPendulumFactorPk1);
+      gtsam_unstable_wrapper(288, obj.ptr_gtsamPendulumFactorPk1);
     end
 
     function display(obj), obj.print(''); end
@@ -41,7 +41,7 @@ classdef PendulumFactorPk1 < gtsam.NonlinearFactor
       % EVALUATEERROR usage: evaluateError(LieScalar pk1, LieScalar qk, LieScalar qk1) : returns Vector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 3 && isa(varargin{1},'gtsam.LieScalar') && isa(varargin{2},'gtsam.LieScalar') && isa(varargin{3},'gtsam.LieScalar')
-        varargout{1} = gtsam_unstable_wrapper(269, this, varargin{:});
+        varargout{1} = gtsam_unstable_wrapper(289, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.PendulumFactorPk1.evaluateError');
       end

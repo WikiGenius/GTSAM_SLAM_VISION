@@ -6,8 +6,6 @@
 %
 %-------Methods-------
 %print(string s) : returns void
-%residual(double error) : returns double
-%weight(double error) : returns double
 %
 %-------Static Methods-------
 %Create(double c) : returns gtsam::noiseModel::mEstimator::Fair
@@ -22,11 +20,11 @@ classdef Fair < gtsam.noiseModel.mEstimator.Base
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(904, varargin{2});
+          my_ptr = gtsam_wrapper(614, varargin{2});
         end
-        base_ptr = gtsam_wrapper(903, my_ptr);
+        base_ptr = gtsam_wrapper(613, my_ptr);
       elseif nargin == 1 && isa(varargin{1},'double')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(905, varargin{1});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(615, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.noiseModel.mEstimator.Fair constructor');
       end
@@ -35,7 +33,7 @@ classdef Fair < gtsam.noiseModel.mEstimator.Base
     end
 
     function delete(obj)
-      gtsam_wrapper(906, obj.ptr_gtsamnoiseModelmEstimatorFair);
+      gtsam_wrapper(616, obj.ptr_gtsamnoiseModelmEstimatorFair);
     end
 
     function display(obj), obj.print(''); end
@@ -46,22 +44,10 @@ classdef Fair < gtsam.noiseModel.mEstimator.Base
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(907, this, varargin{:});
+        gtsam_wrapper(617, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.noiseModel.mEstimator.Fair.print');
       end
-    end
-
-    function varargout = residual(this, varargin)
-      % RESIDUAL usage: residual(double error) : returns double
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(908, this, varargin{:});
-    end
-
-    function varargout = weight(this, varargin)
-      % WEIGHT usage: weight(double error) : returns double
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(909, this, varargin{:});
     end
 
   end
@@ -70,7 +56,14 @@ classdef Fair < gtsam.noiseModel.mEstimator.Base
     function varargout = Create(varargin)
       % CREATE usage: Create(double c) : returns gtsam::noiseModel::mEstimator::Fair
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(910, varargin{:});
+      % 
+      % Usage
+      % CREATE(double c)
+      if length(varargin) == 1 && isa(varargin{1},'double')
+        varargout{1} = gtsam_wrapper(618, varargin{:});
+      else
+        error('Arguments do not match any overload of function gtsam.noiseModel.mEstimator.Fair.Create');
+      end
     end
 
   end

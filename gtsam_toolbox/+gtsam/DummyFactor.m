@@ -14,11 +14,11 @@ classdef DummyFactor < gtsam.NonlinearFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(406, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(308, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(405, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(307, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(407, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(309, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.DummyFactor constructor');
       end
@@ -27,7 +27,7 @@ classdef DummyFactor < gtsam.NonlinearFactor
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(408, obj.ptr_gtsamDummyFactor);
+      gtsam_unstable_wrapper(310, obj.ptr_gtsamDummyFactor);
     end
 
     function display(obj), obj.print(''); end

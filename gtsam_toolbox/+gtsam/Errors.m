@@ -17,11 +17,11 @@ classdef Errors < handle
     function obj = Errors(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_wrapper(1242, my_ptr);
+        gtsam_wrapper(898, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(1243);
+        my_ptr = gtsam_wrapper(899);
       elseif nargin == 1 && isa(varargin{1},'gtsam.VectorValues')
-        my_ptr = gtsam_wrapper(1244, varargin{1});
+        my_ptr = gtsam_wrapper(900, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.Errors constructor');
       end
@@ -29,7 +29,7 @@ classdef Errors < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(1245, obj.ptr_gtsamErrors);
+      gtsam_wrapper(901, obj.ptr_gtsamErrors);
     end
 
     function display(obj), obj.print(''); end
@@ -40,7 +40,7 @@ classdef Errors < handle
       % EQUALS usage: equals(Errors expected, double tol) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 2 && isa(varargin{1},'gtsam.Errors') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(1246, this, varargin{:});
+        varargout{1} = gtsam_wrapper(902, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Errors.equals');
       end
@@ -50,7 +50,7 @@ classdef Errors < handle
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(1247, this, varargin{:});
+        gtsam_wrapper(903, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Errors.print');
       end

@@ -15,9 +15,9 @@ classdef Value < handle
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(89, varargin{2});
+          my_ptr = gtsam_wrapper(1, varargin{2});
         end
-        gtsam_wrapper(88, my_ptr);
+        gtsam_wrapper(0, my_ptr);
       else
         error('Arguments do not match any overload of gtsam.Value constructor');
       end
@@ -25,7 +25,7 @@ classdef Value < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(90, obj.ptr_gtsamValue);
+      gtsam_wrapper(2, obj.ptr_gtsamValue);
     end
 
     function display(obj), obj.print(''); end
@@ -35,14 +35,14 @@ classdef Value < handle
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(91, this, varargin{:});
+      varargout{1} = gtsam_wrapper(3, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(92, this, varargin{:});
+        gtsam_wrapper(4, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.Value.print');
       end

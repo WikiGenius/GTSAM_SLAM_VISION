@@ -4,7 +4,7 @@
 %-------Constructors-------
 %RangeFactorRTV(size_t key1, size_t key2, double measured, Base noiseModel)
 %
-classdef RangeFactorRTV < gtsam.NoiseModelFactor
+classdef RangeFactorRTV < gtsam.NonlinearFactor
   properties
     ptr_gtsamRangeFactorRTV = 0
   end
@@ -14,20 +14,20 @@ classdef RangeFactorRTV < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_unstable_wrapper(456, varargin{2});
+          my_ptr = gtsam_unstable_wrapper(363, varargin{2});
         end
-        base_ptr = gtsam_unstable_wrapper(455, my_ptr);
+        base_ptr = gtsam_unstable_wrapper(362, my_ptr);
       elseif nargin == 4 && isa(varargin{1},'numeric') && isa(varargin{2},'numeric') && isa(varargin{3},'double') && isa(varargin{4},'gtsam.noiseModel.Base')
-        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(457, varargin{1}, varargin{2}, varargin{3}, varargin{4});
+        [ my_ptr, base_ptr ] = gtsam_unstable_wrapper(364, varargin{1}, varargin{2}, varargin{3}, varargin{4});
       else
         error('Arguments do not match any overload of gtsam.RangeFactorRTV constructor');
       end
-      obj = obj@gtsam.NoiseModelFactor(uint64(5139824614673773682), base_ptr);
+      obj = obj@gtsam.NonlinearFactor(uint64(5139824614673773682), base_ptr);
       obj.ptr_gtsamRangeFactorRTV = my_ptr;
     end
 
     function delete(obj)
-      gtsam_unstable_wrapper(458, obj.ptr_gtsamRangeFactorRTV);
+      gtsam_unstable_wrapper(365, obj.ptr_gtsamRangeFactorRTV);
     end
 
     function display(obj), obj.print(''); end

@@ -4,6 +4,8 @@
 %-------Constructors-------
 %KeyVector()
 %KeyVector(KeyVector other)
+%KeyVector(KeySet other)
+%KeyVector(KeyList other)
 %
 %-------Methods-------
 %at(size_t i) : returns size_t
@@ -26,11 +28,15 @@ classdef KeyVector < handle
     function obj = KeyVector(varargin)
       if nargin == 2 && isa(varargin{1}, 'uint64') && varargin{1} == uint64(5139824614673773682)
         my_ptr = varargin{2};
-        gtsam_wrapper(34, my_ptr);
+        gtsam_wrapper(1091, my_ptr);
       elseif nargin == 0
-        my_ptr = gtsam_wrapper(35);
+        my_ptr = gtsam_wrapper(1092);
       elseif nargin == 1 && isa(varargin{1},'gtsam.KeyVector')
-        my_ptr = gtsam_wrapper(36, varargin{1});
+        my_ptr = gtsam_wrapper(1093, varargin{1});
+      elseif nargin == 1 && isa(varargin{1},'gtsam.KeySet')
+        my_ptr = gtsam_wrapper(1094, varargin{1});
+      elseif nargin == 1 && isa(varargin{1},'gtsam.KeyList')
+        my_ptr = gtsam_wrapper(1095, varargin{1});
       else
         error('Arguments do not match any overload of gtsam.KeyVector constructor');
       end
@@ -38,7 +44,7 @@ classdef KeyVector < handle
     end
 
     function delete(obj)
-      gtsam_wrapper(37, obj.ptr_gtsamKeyVector);
+      gtsam_wrapper(1096, obj.ptr_gtsamKeyVector);
     end
 
     function display(obj), obj.print(''); end
@@ -48,50 +54,50 @@ classdef KeyVector < handle
     function varargout = at(this, varargin)
       % AT usage: at(size_t i) : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(38, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1097, this, varargin{:});
     end
 
     function varargout = back(this, varargin)
       % BACK usage: back() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(39, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1098, this, varargin{:});
     end
 
     function varargout = clear(this, varargin)
       % CLEAR usage: clear() : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_wrapper(40, this, varargin{:});
+      gtsam_wrapper(1099, this, varargin{:});
     end
 
     function varargout = empty(this, varargin)
       % EMPTY usage: empty() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(41, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1100, this, varargin{:});
     end
 
     function varargout = front(this, varargin)
       % FRONT usage: front() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(42, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1101, this, varargin{:});
     end
 
     function varargout = push_back(this, varargin)
       % PUSH_BACK usage: push_back(size_t key) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      gtsam_wrapper(43, this, varargin{:});
+      gtsam_wrapper(1102, this, varargin{:});
     end
 
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(44, this, varargin{:});
+      varargout{1} = gtsam_wrapper(1103, this, varargin{:});
     end
 
     function varargout = string_serialize(this, varargin)
       % STRING_SERIALIZE usage: string_serialize() : returns string
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(45, this, varargin{:});
+        varargout{1} = gtsam_wrapper(1104, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.KeyVector.string_serialize');
       end
@@ -108,7 +114,7 @@ classdef KeyVector < handle
       % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(46, varargin{:});
+        varargout{1} = gtsam_wrapper(1105, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.KeyVector.string_deserialize');
       end

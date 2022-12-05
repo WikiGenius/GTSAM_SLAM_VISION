@@ -12,23 +12,16 @@
 %calibration() : returns gtsam::Cal3DS2
 %clone() : returns gtsam::NonlinearFactor
 %dim() : returns size_t
-%equals(NoiseModelFactor other, double tol) : returns bool
+%equals(NonlinearFactor other, double tol) : returns void
 %error(Values c) : returns double
 %keys() : returns gtsam::KeyVector
 %linearize(Values c) : returns gtsam::GaussianFactor
 %measured() : returns gtsam::Point2
-%noiseModel() : returns gtsam::noiseModel::Base
 %print(string s) : returns void
 %printKeys(string s) : returns void
 %size() : returns size_t
 %throwCheirality() : returns bool
-%unwhitenedError(Values x) : returns Vector
 %verboseCheirality() : returns bool
-%whitenedError(Values x) : returns Vector
-%
-%-------Serialization Interface-------
-%string_serialize() : returns string
-%string_deserialize(string serialized) : returns GenericProjectionFactorCal3DS2
 %
 classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
   properties
@@ -40,17 +33,17 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
         if nargin == 2
           my_ptr = varargin{2};
         else
-          my_ptr = gtsam_wrapper(3352, varargin{2});
+          my_ptr = gtsam_wrapper(2314, varargin{2});
         end
-        base_ptr = gtsam_wrapper(3351, my_ptr);
+        base_ptr = gtsam_wrapper(2313, my_ptr);
       elseif nargin == 5 && isa(varargin{1},'gtsam.Point2') && isa(varargin{2},'gtsam.noiseModel.Base') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric') && isa(varargin{5},'gtsam.Cal3DS2')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3353, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2315, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5});
       elseif nargin == 6 && isa(varargin{1},'gtsam.Point2') && isa(varargin{2},'gtsam.noiseModel.Base') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric') && isa(varargin{5},'gtsam.Cal3DS2') && isa(varargin{6},'gtsam.Pose3')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3354, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2316, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6});
       elseif nargin == 7 && isa(varargin{1},'gtsam.Point2') && isa(varargin{2},'gtsam.noiseModel.Base') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric') && isa(varargin{5},'gtsam.Cal3DS2') && isa(varargin{6},'logical') && isa(varargin{7},'logical')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3355, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2317, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7});
       elseif nargin == 8 && isa(varargin{1},'gtsam.Point2') && isa(varargin{2},'gtsam.noiseModel.Base') && isa(varargin{3},'numeric') && isa(varargin{4},'numeric') && isa(varargin{5},'gtsam.Cal3DS2') && isa(varargin{6},'logical') && isa(varargin{7},'logical') && isa(varargin{8},'gtsam.Pose3')
-        [ my_ptr, base_ptr ] = gtsam_wrapper(3356, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
+        [ my_ptr, base_ptr ] = gtsam_wrapper(2318, varargin{1}, varargin{2}, varargin{3}, varargin{4}, varargin{5}, varargin{6}, varargin{7}, varargin{8});
       else
         error('Arguments do not match any overload of gtsam.GenericProjectionFactorCal3DS2 constructor');
       end
@@ -59,7 +52,7 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
     end
 
     function delete(obj)
-      gtsam_wrapper(3357, obj.ptr_gtsamGenericProjectionFactorCal3DS2);
+      gtsam_wrapper(2319, obj.ptr_gtsamGenericProjectionFactorCal3DS2);
     end
 
     function display(obj), obj.print(''); end
@@ -70,7 +63,7 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
       % ACTIVE usage: active(Values c) : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3358, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2320, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.active');
       end
@@ -79,26 +72,26 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
     function varargout = calibration(this, varargin)
       % CALIBRATION usage: calibration() : returns gtsam::Cal3DS2
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3359, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2321, this, varargin{:});
     end
 
     function varargout = clone(this, varargin)
       % CLONE usage: clone() : returns gtsam::NonlinearFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3360, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2322, this, varargin{:});
     end
 
     function varargout = dim(this, varargin)
       % DIM usage: dim() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3361, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2323, this, varargin{:});
     end
 
     function varargout = equals(this, varargin)
-      % EQUALS usage: equals(NoiseModelFactor other, double tol) : returns bool
+      % EQUALS usage: equals(NonlinearFactor other, double tol) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 2 && isa(varargin{1},'gtsam.NoiseModelFactor') && isa(varargin{2},'double')
-        varargout{1} = gtsam_wrapper(3362, this, varargin{:});
+      if length(varargin) == 2 && isa(varargin{1},'gtsam.NonlinearFactor') && isa(varargin{2},'double')
+        gtsam_wrapper(2324, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.equals');
       end
@@ -108,7 +101,7 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
       % ERROR usage: error(Values c) : returns double
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3363, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2325, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.error');
       end
@@ -117,14 +110,14 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
     function varargout = keys(this, varargin)
       % KEYS usage: keys() : returns gtsam::KeyVector
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3364, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2326, this, varargin{:});
     end
 
     function varargout = linearize(this, varargin)
       % LINEARIZE usage: linearize(Values c) : returns gtsam::GaussianFactor
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3365, this, varargin{:});
+        varargout{1} = gtsam_wrapper(2327, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.linearize');
       end
@@ -133,20 +126,14 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
     function varargout = measured(this, varargin)
       % MEASURED usage: measured() : returns gtsam::Point2
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3366, this, varargin{:});
-    end
-
-    function varargout = noiseModel(this, varargin)
-      % NOISEMODEL usage: noiseModel() : returns gtsam::noiseModel::Base
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3367, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2328, this, varargin{:});
     end
 
     function varargout = print(this, varargin)
       % PRINT usage: print(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3368, this, varargin{:});
+        gtsam_wrapper(2329, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.print');
       end
@@ -156,7 +143,7 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
       % PRINTKEYS usage: printKeys(string s) : returns void
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
       if length(varargin) == 1 && isa(varargin{1},'char')
-        gtsam_wrapper(3369, this, varargin{:});
+        gtsam_wrapper(2330, this, varargin{:});
       else
         error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.printKeys');
       end
@@ -165,71 +152,23 @@ classdef GenericProjectionFactorCal3DS2 < gtsam.NoiseModelFactor
     function varargout = size(this, varargin)
       % SIZE usage: size() : returns size_t
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3370, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2331, this, varargin{:});
     end
 
     function varargout = throwCheirality(this, varargin)
       % THROWCHEIRALITY usage: throwCheirality() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3371, this, varargin{:});
-    end
-
-    function varargout = unwhitenedError(this, varargin)
-      % UNWHITENEDERROR usage: unwhitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3372, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.unwhitenedError');
-      end
+      varargout{1} = gtsam_wrapper(2332, this, varargin{:});
     end
 
     function varargout = verboseCheirality(this, varargin)
       % VERBOSECHEIRALITY usage: verboseCheirality() : returns bool
       % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      varargout{1} = gtsam_wrapper(3373, this, varargin{:});
+      varargout{1} = gtsam_wrapper(2333, this, varargin{:});
     end
 
-    function varargout = whitenedError(this, varargin)
-      % WHITENEDERROR usage: whitenedError(Values x) : returns Vector
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1 && isa(varargin{1},'gtsam.Values')
-        varargout{1} = gtsam_wrapper(3374, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.whitenedError');
-      end
-    end
-
-    function varargout = string_serialize(this, varargin)
-      % STRING_SERIALIZE usage: string_serialize() : returns string
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 0
-        varargout{1} = gtsam_wrapper(3375, this, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.string_serialize');
-      end
-    end
-
-    function sobj = saveobj(obj)
-      % SAVEOBJ Saves the object to a matlab-readable format
-      sobj = obj.string_serialize();
-    end
   end
 
   methods(Static = true)
-    function varargout = string_deserialize(varargin)
-      % STRING_DESERIALIZE usage: string_deserialize() : returns gtsam.GenericProjectionFactorCal3DS2
-      % Doxygen can be found at http://research.cc.gatech.edu/borg/sites/edu.borg/html/index.html
-      if length(varargin) == 1
-        varargout{1} = gtsam_wrapper(3376, varargin{:});
-      else
-        error('Arguments do not match any overload of function gtsam.GenericProjectionFactorCal3DS2.string_deserialize');
-      end
-    end
-
-    function obj = loadobj(sobj)
-      % LOADOBJ Saves the object to a matlab-readable format
-      obj = gtsam.GenericProjectionFactorCal3DS2.string_deserialize(sobj);
-    end
   end
 end
