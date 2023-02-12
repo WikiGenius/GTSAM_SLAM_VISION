@@ -7,3 +7,5 @@ static_images
 *.mlx
 *.jpg
 *.png
+*.mat
+Data
