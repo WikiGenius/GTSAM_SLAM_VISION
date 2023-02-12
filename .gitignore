@@ -3,3 +3,5 @@ test*
 *.asv
 notes.docx
 ~*.docx
+static_images
+*.mlx

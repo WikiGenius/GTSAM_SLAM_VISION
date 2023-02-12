@@ -30,9 +30,9 @@ addpath(ToolboxPath);
 %% Data path
 Data_path = 'Data';
 % choose one from this
-% Data1
-% Data2
-Data_world_path =  [Data_path, filesep,'Data1']; 
+% DataMapping
+% DataSquare
+Data_world_path =  [Data_path, filesep,'DataMapping']; 
 path_LeftImgs   =  [Data_world_path, filesep,'frames']; 
 
 %% Load Data

@@ -30,8 +30,9 @@ function [x, R, T] = estimate_pose(K, DetAll, TagSize, frame_no, LandMarksComput
             end
         end
     end
-
-    H_pr = inv(K) * homography(Img_X, Img_Y, Wd_X, Wd_Y);
+    % Get Homography matrix
+    H = homography(Img_X, Img_Y, Wd_X, Wd_Y);
+    H_pr = inv(K) * H;
     
     [U, ~, V] = svd([H_pr(:,1), H_pr(:,2), cross(H_pr(:,1),H_pr(:,2))]);
     R = U * [1, 0, 0; 0, 1, 0; 0, 0, det(U*V')] * V';

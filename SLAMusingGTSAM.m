@@ -16,10 +16,16 @@ function [LandMarksComputed, AllPosesComputed] = SLAMusingGTSAM(DetAll, K, TagSi
 	graph = NonlinearFactorGraph;
 	initialEstimate = Values;
 	
+    posePriorNoise = noiseModel.Diagonal.Sigmas(ones(6,1) * .001);
+	pointPriorNoise = noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6);
+    poseNoise = noiseModel.Diagonal.Sigmas(ones(6,1) * .001);
+    pointNoise = noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6);
+    measurementNoise = noiseModel.Isotropic.Sigma(2,1.0);
+	
 	% Add prior for the first pose
-	graph.add(PriorFactorPose3(symbol('x',1),Pose3(Rot3(Data.R{1}), Point3(Data.T{1})), noiseModel.Diagonal.Sigmas(ones(6,1) * .001)));
+	graph.add(PriorFactorPose3(symbol('x',1),Pose3(Rot3(Data.R{1}), Point3(Data.T{1})), posePriorNoise));
 	% Add prior for the World origin
-	graph.add(PriorFactorPoint3(symbol('L',10),Point3(0,0,0),noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6)));
+	graph.add(PriorFactorPoint3(symbol('L',10),Point3(0,0,0),pointPriorNoise));
 	% Add identity between factor between poses
 	for i = 1:size(DetAll,2)-1
 		p1 = Pose3(Rot3(Data.R{i}),Point3(Data.T{i}));
@@ -27,7 +33,7 @@ function [LandMarksComputed, AllPosesComputed] = SLAMusingGTSAM(DetAll, K, TagSi
 		id = Pose3(eye(4,4));
 		
 		graph.add(BetweenFactorPose3(symbol('x',i),symbol('x',i+1), ...
-			id, noiseModel.Diagonal.Sigmas(ones(6,1) * .001)));
+			id, poseNoise));
 	end
 	
 	% Projection factors
@@ -36,16 +42,16 @@ function [LandMarksComputed, AllPosesComputed] = SLAMusingGTSAM(DetAll, K, TagSi
 		frame = DetAll{i};
 		for j = 1:size(frame,1)
 			graph.add(GenericProjectionFactorCal3_S2(...
-				Point2(frame(j,2),frame(j,3)), noiseModel.Isotropic.Sigma(2,1.0), symbol('x',i),...
+				Point2(frame(j,2),frame(j,3)), measurementNoise, symbol('x',i),...
 				symbol('L',frame(j,1)), Kp));
 			graph.add(GenericProjectionFactorCal3_S2(...
-				Point2(frame(j,4),frame(j,5)), noiseModel.Isotropic.Sigma(2,1.0), symbol('x',i),...
+				Point2(frame(j,4),frame(j,5)), measurementNoise, symbol('x',i),...
 				symbol('M',frame(j,1)), Kp));
 			graph.add(GenericProjectionFactorCal3_S2(...
-				Point2(frame(j,6),frame(j,7)), noiseModel.Isotropic.Sigma(2,1.0), symbol('x',i),...
+				Point2(frame(j,6),frame(j,7)), measurementNoise, symbol('x',i),...
 				symbol('N',frame(j,1)), Kp));
 			graph.add(GenericProjectionFactorCal3_S2(...
-				Point2(frame(j,8),frame(j,9)), noiseModel.Isotropic.Sigma(2,1.0), symbol('x',i),...
+				Point2(frame(j,8),frame(j,9)), measurementNoise, symbol('x',i),...
 				symbol('O',frame(j,1)), Kp));
 		end
 	end
@@ -53,13 +59,13 @@ function [LandMarksComputed, AllPosesComputed] = SLAMusingGTSAM(DetAll, K, TagSi
 	% Add between factors between tags
 	for i = 1:size(LandMarksComputed,1)
 		graph.add(BetweenFactorPoint3(symbol('L',LandMarksComputed(i,1)),...
-			symbol('M',LandMarksComputed(i,1)),Point3(TagSize, 0, 0),noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6)));
+			symbol('M',LandMarksComputed(i,1)),Point3(TagSize, 0, 0),pointNoise));
 		graph.add(BetweenFactorPoint3(symbol('L',LandMarksComputed(i,1)),...
-			symbol('O',LandMarksComputed(i,1)),Point3(0, TagSize, 0),noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6)));
+			symbol('O',LandMarksComputed(i,1)),Point3(0, TagSize, 0),pointNoise));
 		graph.add(BetweenFactorPoint3(symbol('M',LandMarksComputed(i,1)),...
-			symbol('N',LandMarksComputed(i,1)),Point3(TagSize, 0, 0),noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6)));
+			symbol('N',LandMarksComputed(i,1)),Point3(TagSize, 0, 0),pointNoise));
 		graph.add(BetweenFactorPoint3(symbol('O',LandMarksComputed(i,1)),...
-			symbol('N',LandMarksComputed(i,1)),Point3(0, TagSize, 0),noiseModel.Diagonal.Sigmas(ones(3,1) * 1e-6)));
+			symbol('N',LandMarksComputed(i,1)),Point3(0, TagSize, 0),pointNoise));
 	end
 	
 	for i = 1:size(DetAll,2)
@@ -73,21 +79,45 @@ function [LandMarksComputed, AllPosesComputed] = SLAMusingGTSAM(DetAll, K, TagSi
 	   initialEstimate.insert(symbol('O',LandMarksComputed(i, 1)),Point3([LandMarksComputed(i, 8:9) 0]')); 
 	end
 	
-	LMf = LevenbergMarquardtParams;
-	LMf.setlambdaInitial(1.0);
-	LMf.setVerbosityLM('trylambda');
-	optimizer = LevenbergMarquardtOptimizer(graph, initialEstimate, LMf);
-	result = optimizer.optimize();
-	
+	LMP = LevenbergMarquardtParams;
+	LMP.setlambdaInitial(1.0);
+	LMP.setVerbosityLM('trylambda');
+	optimizer = LevenbergMarquardtOptimizer(graph, initialEstimate, LMP);
+
+	% DoglegOptimizer failed
+	% Attempting to retrieve the key "L10", which does not exist in the Values.
+	% DMP = DoglegParams;
+	% DMP.setAbsoluteErrorTol(1e-15);
+	% DMP.setRelativeErrorTol(1e-15);
+	% DMP.setVerbosity('ERROR');
+	% DMP.setVerbosityDL('VERBOSE');
+	% DMP.setOrdering(graph.orderingCOLAMD());
+	% optimizer = DoglegOptimizer(graph, initialEstimate);
+
+	% result = optimizer.optimize();
+	result = optimizer.optimizeSafely();
+	result.print('final result');
+
+
+
 	%% Retrieving landmarks
 	for i = 1:size(LandMarksComputed,1)
-		L(i, :) = [result.at(symbol('L', LandMarksComputed(i, 1))).x result.at(symbol('L', LandMarksComputed(i, 1))).y result.at(symbol('L', LandMarksComputed(i, 1))).z];
-		M(i, :) = [result.at(symbol('M', LandMarksComputed(i, 1))).x result.at(symbol('M', LandMarksComputed(i, 1))).y result.at(symbol('M', LandMarksComputed(i, 1))).z];
-		N(i, :) = [result.at(symbol('N', LandMarksComputed(i, 1))).x result.at(symbol('N', LandMarksComputed(i, 1))).y result.at(symbol('N', LandMarksComputed(i, 1))).z];
-		O(i, :) = [result.at(symbol('O', LandMarksComputed(i, 1))).x result.at(symbol('O', LandMarksComputed(i, 1))).y result.at(symbol('O', LandMarksComputed(i, 1))).z];
+		pL(i, :) = [result.at(symbol('L', LandMarksComputed(i, 1))).x result.at(symbol('L', LandMarksComputed(i, 1))).y result.at(symbol('L', LandMarksComputed(i, 1))).z];
+		pM(i, :) = [result.at(symbol('M', LandMarksComputed(i, 1))).x result.at(symbol('M', LandMarksComputed(i, 1))).y result.at(symbol('M', LandMarksComputed(i, 1))).z];
+		pN(i, :) = [result.at(symbol('N', LandMarksComputed(i, 1))).x result.at(symbol('N', LandMarksComputed(i, 1))).y result.at(symbol('N', LandMarksComputed(i, 1))).z];
+		pO(i, :) = [result.at(symbol('O', LandMarksComputed(i, 1))).x result.at(symbol('O', LandMarksComputed(i, 1))).y result.at(symbol('O', LandMarksComputed(i, 1))).z];
 	end
-	LandMarksComputed = [LandMarksComputed(:, 1) L M N O];
+	LandMarksComputed = [LandMarksComputed(:, 1) pL pM pN pO];
 	
+	% Retrieving poses
+	AllPosesComputed = [];
+	for frame_no = 1:size(DetAll,2)
+		pose = result.at(symbol('x', frame_no));
+		r = pose.rotation.matrix;
+		t = pose.translation.vector;
+		x = -r'*t;
+		AllPosesComputed(frame_no,:) = x';
+	end
 	AllPosesComputed(:,3) = abs(AllPosesComputed(:,3));
 	
 	%% % Plot the last two figures (POST-GTSAM)
