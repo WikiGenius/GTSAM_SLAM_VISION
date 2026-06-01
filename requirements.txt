@@ -1,0 +1,2 @@
+# This is a MATLAB project. No Python packages are required by default.
+# MATLAB and a compatible GTSAM MATLAB toolbox setup are expected.
