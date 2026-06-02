@@ -1,48 +1,39 @@
 # GTSAM SLAM Vision
 
-## Overview
-This repository contains MATLAB experiments for visual pose estimation and factor-graph SLAM. The project explores how camera poses and landmark/tag locations can be estimated from visual measurements, homography-based initialization, and graph optimization.
+## Purpose
 
-The repository is intended as a compact public research/engineering artifact: enough structure to understand the method and reproduce the learning path, without exposing unpublished datasets or private experiment details.
+This repository contains MATLAB experiments for visual pose estimation and factor-graph SLAM. It explores how camera poses and landmark/tag locations can be estimated from visual measurements, homography-based initialization, and graph optimization.
 
-## Research/Engineering Motivation
-Visual SLAM connects perception, estimation, geometry, and optimization. A robot that moves through an environment must reason about its own pose and the location of observed landmarks under noisy measurements.
+The repository is intended as a compact public research/engineering artifact: enough structure to understand the learning path without exposing unpublished datasets or private experiment details.
 
-This project focuses on the adjustment step: representing assumptions as factors, assigning uncertainty through noise models, and optimizing the resulting graph. The same ideas appear in mobile robotics, visual-inertial navigation, mapping, inspection, and active perception.
+## Relation to State Estimation
 
-## Features
-- MATLAB scripts for homography-based pose estimation.
-- Factor-graph formulation using GTSAM-style constraints.
-- Projection constraints between world points and image observations.
-- Prior factors for anchoring the first camera/tag frame.
-- Between-factor style constraints for known tag geometry and frame-to-frame consistency.
-- Plotting scripts for comparing estimates with and without graph optimization.
+This repository supports my research identity by showing factor-graph thinking for robot state estimation. The same estimation ideas can later connect to active scanning, where camera pose, target geometry, and uncertainty affect scan coverage and planning quality.
 
-## Method
-At a high level, the pipeline follows these steps:
+## Maturity Level
 
-1. Estimate an initial camera pose from visual tag observations using homography.
-2. Choose a detected tag or frame as the world-coordinate reference.
-3. Build an initial factor graph containing camera poses and landmark/tag points.
-4. Add priors, projection constraints, known-size constraints, and smoothness assumptions between nearby camera instants.
-5. Assign Gaussian noise models to represent confidence in each measurement or constraint.
-6. Optimize the graph and visualize the resulting pose/landmark estimates.
+**Current status:** Public MATLAB research/learning artifact.
 
-The exact experiment configuration is intentionally kept lightweight so the repository can remain a public learning and portfolio artifact.
+The repository contains MATLAB scripts and a GTSAM-style toolbox setup for visual pose estimation and factor-graph experiments. It should be treated as a public learning and portfolio artifact, not a complete SLAM system or paper-level implementation.
 
-## Installation
-Clone the repository:
+## Current Runnable Artifact
 
-```bash
-git clone https://github.com/WikiGenius/GTSAM_SLAM_VISION.git
-cd GTSAM_SLAM_VISION
+The repository includes MATLAB scripts such as:
+
+- `main.m`
+- `SLAMusingGTSAM.m`
+- `estimate_pose.m`
+- `plot_With_GTSAM.m`
+- `plot_Without_GTSAM.m`
+- `visualize_landmarks.m`
+
+Running them may require matching local image/tag observations, calibration assumptions, and a working MATLAB/GTSAM setup.
+
+Open MATLAB from the repository root and run:
+
+```matlab
+main
 ```
-
-Requirements:
-
-- MATLAB.
-- GTSAM MATLAB toolbox or compatible local setup.
-- Image/vision data or tag observations matching the script assumptions.
 
 If your MATLAB path does not include the toolbox, add it before running the scripts:
 
@@ -50,45 +41,47 @@ If your MATLAB path does not include the toolbox, add it before running the scri
 addpath(genpath('gtsam_toolbox'));
 ```
 
-## Run
-Open MATLAB from the repository root and run the main experiment script:
+## Data Policy
 
-```matlab
-main
-```
+No private datasets are included in this public repository.
 
-Useful scripts include:
+No private lab datasets should be added here. If a script depends on local data, document the expected format and keep private data outside the repo.
 
-```matlab
-SLAMusingGTSAM
-estimate_pose
-plot_With_GTSAM
-plot_Without_GTSAM
-visualize_landmarks
-```
+Future public examples should use synthetic data or data that is clearly allowed to be shared.
 
-## Results
-The repository includes plotting scripts for visualizing landmark and pose estimates. Add generated plots, screenshots, or comparison figures to `results/` as the experiments are cleaned up.
+## Planned Synthetic Example
 
-Suggested result artifacts:
-
-- Estimated camera trajectory.
-- Landmark/tag reconstruction plot.
-- Before/after optimization comparison.
-- Notes on covariance/noise settings.
+- Add a minimal synthetic landmark/tag setup.
+- Add a simple camera trajectory with generated observations.
+- Run graph optimization on the synthetic observations.
+- Save public-safe plots under `results/` or `media/`.
+- Clearly state the simplifications and assumptions.
 
 ## Limitations
+
 - This is a simplified educational/research prototype, not a complete production SLAM system.
 - Dataset paths and calibration assumptions may need adjustment before running on a new machine.
 - Robust outlier handling, loop closure, and full sensor-fusion pipelines are not included.
 - Noise values and initialization choices are experiment-dependent.
+- No private datasets are included in this public repository.
+
+## Features
+
+- MATLAB scripts for homography-based pose estimation.
+- Factor-graph formulation using GTSAM-style constraints.
+- Projection constraints between world points and image observations.
+- Prior factors for anchoring the first camera/tag frame.
+- Between-factor style constraints for known tag geometry and frame-to-frame consistency.
+- Plotting scripts for comparing estimates with and without graph optimization.
 
 ## Roadmap
-- [ ] Add a minimal public dataset or synthetic example.
+
+- [ ] Add a minimal public synthetic example.
 - [ ] Add baseline results without graph optimization.
 - [ ] Add metrics for reprojection error and trajectory consistency.
 - [ ] Add experiment logs for different noise settings.
 - [ ] Add a short report explaining the factor graph design.
 
 ## Citation / Acknowledgment
+
 This project is based on visual SLAM, homography-based pose estimation, and factor-graph optimization concepts. It uses or references GTSAM-style modeling; please cite GTSAM and any related course, paper, or dataset if you build on this work.
